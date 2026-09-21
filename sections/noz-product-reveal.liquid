@@ -9,6 +9,17 @@
   assign acc = section.settings.accent_color
   assign bg = section.settings.bg_color
   assign product = section.settings.product
+
+  if section.settings.pack_front != blank
+    assign front_src = section.settings.pack_front | image_url: width: 800
+  else
+    assign front_src = 'noz-pack-front.jpg' | asset_url
+  endif
+  if section.settings.pack_back != blank
+    assign back_src = section.settings.pack_back | image_url: width: 800
+  else
+    assign back_src = 'noz-pack-back.jpg' | asset_url
+  endif
 -%}
 
 <section class="noz noz-section noz-product" id="noz-product-{{ sid }}"
@@ -18,22 +29,40 @@
   <div class="noz-wrap noz-product__grid">
 
     <div class="noz-product__media noz-reveal">
-      <div class="noz-product__media-inner" data-noz-parallax="10">
-        {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 1200 | image_tag:
-            loading: 'lazy', sizes: '(max-width: 899px) 90vw, 46vw',
-            widths: '400,600,800,1000,1200', alt: section.settings.image.alt | default: 'NOZ Tiras Nasales' }}
-        {%- elsif product != blank and product.featured_image != blank -%}
-          {{ product.featured_image | image_url: width: 1200 | image_tag:
-            loading: 'lazy', sizes: '(max-width: 899px) 90vw, 46vw', widths: '400,600,800,1000,1200', alt: product.title }}
-        {%- else -%}
-          <div class="noz-product__placeholder">
-            <span class="noz-product__ph-logo">NOZ</span>
-            <span class="noz-product__ph-sub">Tiras Nasales</span>
-            <span class="noz-product__ph-count">{{ section.settings.count_number | default: '30' }}<small>{{ section.settings.count_label | default: 'tiras' }}</small></span>
+      {%- if section.settings.enable_3d -%}
+        <div class="noz-pack3d" data-noz-pack3d data-speed="{{ section.settings.rotate_speed }}" data-start="-18">
+          <div class="noz-pack3d__stage" role="img" aria-label="{{ section.settings.title | default: 'NOZ Tiras Nasales' }} — packaging 3D, arrastra para girar">
+            <span class="noz-pack3d__glow2" aria-hidden="true"></span>
+            <div class="noz-pack3d__obj">
+              <div class="noz-pack3d__face noz-pack3d__face--front"><img src="{{ front_src }}" alt="NOZ packaging — frente" loading="lazy" width="630" height="1085"></div>
+              <div class="noz-pack3d__face noz-pack3d__face--back"><img src="{{ back_src }}" alt="NOZ packaging — reverso" loading="lazy" width="630" height="1085"></div>
+              <div class="noz-pack3d__edge noz-pack3d__edge--right" aria-hidden="true"></div>
+              <div class="noz-pack3d__edge noz-pack3d__edge--left" aria-hidden="true"></div>
+              <div class="noz-pack3d__cap noz-pack3d__cap--top" aria-hidden="true"></div>
+              <div class="noz-pack3d__cap noz-pack3d__cap--bottom" aria-hidden="true"></div>
+            </div>
+            <span class="noz-pack3d__shadow" aria-hidden="true"></span>
           </div>
-        {%- endif -%}
-      </div>
+          <span class="noz-pack3d__hint">{% render 'noz-icon', icon: 'spark', size: 15 %}Arrastra para girar</span>
+        </div>
+      {%- else -%}
+        <div class="noz-product__media-inner" data-noz-parallax="10">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag:
+              loading: 'lazy', sizes: '(max-width: 899px) 90vw, 46vw',
+              widths: '400,600,800,1000,1200', alt: section.settings.image.alt | default: 'NOZ Tiras Nasales' }}
+          {%- elsif product != blank and product.featured_image != blank -%}
+            {{ product.featured_image | image_url: width: 1200 | image_tag:
+              loading: 'lazy', sizes: '(max-width: 899px) 90vw, 46vw', widths: '400,600,800,1000,1200', alt: product.title }}
+          {%- else -%}
+            <div class="noz-product__placeholder">
+              <span class="noz-product__ph-logo">NOZ</span>
+              <span class="noz-product__ph-sub">Tiras Nasales</span>
+              <span class="noz-product__ph-count">{{ section.settings.count_number | default: '30' }}<small>{{ section.settings.count_label | default: 'tiras' }}</small></span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
       {%- if section.settings.badge != blank -%}
         <span class="noz-product__float noz-product__float--1" data-noz-parallax="22">{{ section.settings.badge }}</span>
       {%- endif -%}
@@ -61,7 +90,7 @@
           <span class="noz-product__price">{{ product.price | money }}</span>
         {%- endif -%}
         {%- if section.settings.cta_label != blank -%}
-          <a class="noz-btn" href="{{ section.settings.cta_link | default: '#' }}">{{ section.settings.cta_label }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</a>
+          <a class="noz-btn" data-noz-magnetic="12" href="{{ section.settings.cta_link | default: '#' }}">{{ section.settings.cta_label }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</a>
         {%- endif -%}
       </div>
     </div>
@@ -146,7 +175,12 @@
     { "type": "text", "id": "title", "label": "Título", "default": "NOZ Tiras Nasales" },
     { "type": "textarea", "id": "body", "label": "Texto", "default": "Lo que hay dentro marca la diferencia. Diseñadas para elevar suavemente los conductos nasales y ayudarte a respirar más y rendir mejor." },
     { "type": "product", "id": "product", "label": "Producto vinculado (opcional)", "info": "Si lo eliges, se usa su imagen y precio." },
-    { "type": "image_picker", "id": "image", "label": "Imagen del producto (opcional)" },
+    { "type": "header", "content": "Packaging 3D" },
+    { "type": "checkbox", "id": "enable_3d", "label": "Mostrar packaging 3D giratorio", "default": true },
+    { "type": "image_picker", "id": "pack_front", "label": "Cara frontal del packaging", "info": "Si se deja vacío se usa la imagen de marca incluida." },
+    { "type": "image_picker", "id": "pack_back", "label": "Cara trasera del packaging" },
+    { "type": "range", "id": "rotate_speed", "label": "Velocidad de giro", "min": 0, "max": 1, "step": 0.05, "unit": "x", "default": 0.3 },
+    { "type": "image_picker", "id": "image", "label": "Imagen del producto (si 3D desactivado)" },
     { "type": "text", "id": "count_number", "label": "Nº de tiras (placeholder)", "default": "30" },
     { "type": "text", "id": "count_label", "label": "Etiqueta unidades", "default": "tiras" },
     { "type": "text", "id": "badge", "label": "Insignia flotante", "default": "30 tiras" },

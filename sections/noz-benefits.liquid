@@ -21,7 +21,7 @@
 
     <div class="noz-benefits__grid">
       {%- for block in section.blocks -%}
-        <article class="noz-benefits__card noz-card noz-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <article class="noz-benefits__card noz-card noz-reveal" data-noz-tilt="6" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
           <span class="noz-ico">{% render 'noz-icon', icon: block.settings.icon, size: 30 %}</span>
           <h3 class="noz-h3">{{ block.settings.title }}</h3>
           <p class="noz-body">{{ block.settings.text }}</p>

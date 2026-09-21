@@ -14,8 +14,10 @@
   class="noz noz-section noz-hero noz-hero--{{ section.settings.height }}"
   id="noz-hero-{{ sid }}"
   data-noz-parallax-scope
+  data-noz-spotlight
   style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};"
 >
+  <span class="noz-spotlight" aria-hidden="true"></span>
   <!-- animated airflow field -->
   <div class="noz-hero__bg" aria-hidden="true">
     <span class="noz-glow noz-hero__glow"></span>
@@ -60,7 +62,7 @@
 
     <div class="noz-hero__cta noz-reveal" data-delay="3">
       {%- if section.settings.cta1_label != blank -%}
-        <a class="noz-btn" href="{{ section.settings.cta1_link | default: '#' }}">
+        <a class="noz-btn" data-noz-magnetic="14" href="{{ section.settings.cta1_link | default: '#' }}">
           {{ section.settings.cta1_label }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}
         </a>
       {%- endif -%}

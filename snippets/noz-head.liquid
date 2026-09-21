@@ -1,17 +1,35 @@
 {%- comment -%}
   NOZ — shared head loader
-  Renders brand fonts + base stylesheet + shared JS.
-  Rendered at the top of every NOZ section. Duplicate <link>
-  tags are de-duped by the browser; noz.js guards against
-  double-execution, so including this per-section is safe.
+  Fonts (brand Source Sans / Source Code) + base stylesheet + shared JS.
+  Rendered at the top of every NOZ section. Duplicate <link>/<style> tags are
+  de-duped by the browser; noz.js guards against double-execution.
+
+  FONTS:
+  The NOZ brandbook uses Adobe Source Sans (headlines + body) and Source Code
+  (technical labels). Upload the variable OTFs to your theme's *assets* folder
+  with these exact names to use the real brand files:
+      SourceSansVariable-Roman.otf
+      SourceSansVariable-Italic.otf
+      SourceCodeVariable-Roman.otf
+  If they are absent, the identical Google Fonts webfonts (Source Sans 3 /
+  Source Code Pro) load as a pixel-close fallback automatically.
 
   Usage:  {% render 'noz-head' %}
 {%- endcomment -%}
-{%- unless settings.noz_disable_fonts -%}
+
+{%- unless settings.noz_disable_local_fonts -%}
+  <style>
+    @font-face{font-family:'NOZ Sans';src:url('{{ "SourceSansVariable-Roman.otf" | asset_url }}') format('opentype');font-weight:200 900;font-style:normal;font-display:swap;}
+    @font-face{font-family:'NOZ Sans';src:url('{{ "SourceSansVariable-Italic.otf" | asset_url }}') format('opentype');font-weight:200 900;font-style:italic;font-display:swap;}
+    @font-face{font-family:'NOZ Code';src:url('{{ "SourceCodeVariable-Roman.otf" | asset_url }}') format('opentype');font-weight:200 700;font-style:normal;font-display:swap;}
+  </style>
+{%- endunless -%}
+{%- unless settings.noz_disable_google_fonts -%}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,700;0,900;1,700;1,900&family=Inter:wght@400;500;600;700&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,900;1,600&family=Source+Code+Pro:wght@500;600;700&display=swap">
 {%- endunless -%}
+
 {{ 'noz-base.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'noz.js' | asset_url }}" defer></script>

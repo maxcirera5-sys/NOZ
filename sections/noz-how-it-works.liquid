@@ -23,7 +23,7 @@
     <div class="noz-hiw__carousel" data-noz-carousel>
       <div class="noz-hiw__track" data-carousel-track>
         {%- for block in section.blocks -%}
-          <article class="noz-hiw__card noz-card noz-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <article class="noz-hiw__card noz-card noz-reveal" data-noz-tilt="5" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
             <span class="noz-hiw__step">{{ forloop.index0 | plus: 1 | prepend: '0' | slice: -2, 2 }}</span>
             <span class="noz-ico">{% render 'noz-icon', icon: block.settings.icon, size: 30 %}</span>
             <h3 class="noz-h3 noz-hiw__card-title">{{ block.settings.title }}</h3>

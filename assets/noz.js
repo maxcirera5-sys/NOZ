@@ -249,6 +249,165 @@
     });
   }
 
+  /* ---------- 3D tilt on cards ---------- */
+  function initTilt(root) {
+    if (reduceMotion) return;
+    if (window.matchMedia && window.matchMedia("(hover: none)").matches) return;
+    var els = (root || document).querySelectorAll("[data-noz-tilt]:not([data-tilt-ready])");
+    els.forEach(function (el) {
+      el.setAttribute("data-tilt-ready", "");
+      var max = parseFloat(el.getAttribute("data-noz-tilt")) || 7;
+      var rafId;
+      function move(e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(function () {
+          el.style.transform =
+            "perspective(800px) rotateX(" + (-py * max).toFixed(2) + "deg) rotateY(" +
+            (px * max).toFixed(2) + "deg) translateY(-6px)";
+        });
+      }
+      el.addEventListener("pointermove", move);
+      el.addEventListener("pointerleave", function () {
+        if (rafId) cancelAnimationFrame(rafId);
+        el.style.transform = "";
+      });
+    });
+  }
+
+  /* ---------- Magnetic buttons ---------- */
+  function initMagnetic(root) {
+    if (reduceMotion) return;
+    if (window.matchMedia && window.matchMedia("(hover: none)").matches) return;
+    var els = (root || document).querySelectorAll("[data-noz-magnetic]:not([data-mag-ready])");
+    els.forEach(function (el) {
+      el.setAttribute("data-mag-ready", "");
+      var strength = parseFloat(el.getAttribute("data-noz-magnetic")) || 14;
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = "translate(" + x * strength + "px," + y * strength + "px)";
+      });
+      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+    });
+  }
+
+  /* ---------- Pointer spotlight ---------- */
+  function initSpotlight(root) {
+    var scopes = (root || document).querySelectorAll("[data-noz-spotlight]:not([data-spot-ready])");
+    scopes.forEach(function (scope) {
+      scope.setAttribute("data-spot-ready", "");
+      var el = scope.querySelector(".noz-spotlight");
+      if (!el) return;
+      scope.addEventListener("pointermove", function (e) {
+        var r = scope.getBoundingClientRect();
+        el.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
+        el.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
+        el.classList.add("is-live");
+      });
+      scope.addEventListener("pointerleave", function () { el.classList.remove("is-live"); });
+    });
+  }
+
+  /* ---------- 3D rotating package (auto-rotate + drag + momentum) ---------- */
+  function initPack3d(root) {
+    var packs = (root || document).querySelectorAll("[data-noz-pack3d]:not([data-pack-ready])");
+    packs.forEach(function (pack) {
+      pack.setAttribute("data-pack-ready", "");
+      var stage = pack.querySelector(".noz-pack3d__stage");
+      var obj = pack.querySelector(".noz-pack3d__obj");
+      if (!stage || !obj) return;
+
+      var speed = parseFloat(pack.getAttribute("data-speed")) || 0.28; // deg/frame auto
+      var angY = parseFloat(pack.getAttribute("data-start")) || -18;
+      var angX = -4;
+      var velY = 0;
+      var dragging = false;
+      var lastX = 0, lastY = 0;
+      var visible = true;
+      var interacting = false;
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (ents) {
+          visible = ents[0].isIntersecting;
+        }, { threshold: 0.05 }).observe(pack);
+      }
+
+      function render() {
+        if (!dragging) {
+          if (Math.abs(velY) > 0.01) {
+            angY += velY;
+            velY *= 0.94; // momentum decay
+          } else if (!reduceMotion && !interacting && visible) {
+            angY += speed; // idle auto-rotate
+          }
+          // ease tilt back toward rest
+          angX += (-4 - angX) * 0.06;
+        }
+        obj.style.transform = "rotateX(" + angX.toFixed(2) + "deg) rotateY(" + angY.toFixed(2) + "deg)";
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+
+      function down(e) {
+        dragging = true; interacting = true; velY = 0;
+        lastX = e.clientX; lastY = e.clientY;
+        stage.classList.add("is-grabbing");
+        pack.classList.add("is-dragging");
+        stage.setPointerCapture && stage.setPointerCapture(e.pointerId);
+      }
+      function move(e) {
+        if (!dragging) return;
+        var dx = e.clientX - lastX;
+        var dy = e.clientY - lastY;
+        lastX = e.clientX; lastY = e.clientY;
+        velY = dx * 0.35;
+        angY += dx * 0.35;
+        angX = Math.max(-24, Math.min(16, angX - dy * 0.18));
+      }
+      function up() {
+        dragging = false;
+        stage.classList.remove("is-grabbing");
+        pack.classList.remove("is-dragging");
+        // resume auto-rotate shortly after release
+        setTimeout(function () { interacting = false; }, 2200);
+      }
+      stage.addEventListener("pointerdown", down);
+      stage.addEventListener("pointermove", move);
+      window.addEventListener("pointerup", up);
+      stage.addEventListener("pointerenter", function () { interacting = true; });
+      stage.addEventListener("pointerleave", function () { if (!dragging) interacting = false; });
+    });
+  }
+
+  /* ---------- Smooth in-page anchors ---------- */
+  function initAnchors(root) {
+    (root || document).querySelectorAll('a[href^="#"]:not([data-anchor-ready])').forEach(function (a) {
+      var id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      a.setAttribute("data-anchor-ready", "");
+      a.addEventListener("click", function (e) {
+        var t = document.querySelector(id);
+        if (!t) return;
+        e.preventDefault();
+        t.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      });
+    });
+  }
+
+  /* ---------- Safety net: reveal anything still hidden ---------- */
+  function revealSafetyNet() {
+    setTimeout(function () {
+      document.querySelectorAll(".noz-reveal:not(.is-in)").forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add("is-in");
+      });
+    }, 2500);
+  }
+
   function init(root) {
     initReveal(root);
     initCounts(root);
@@ -256,6 +415,12 @@
     initAccordions(root);
     initForms(root);
     initParallax(root);
+    initTilt(root);
+    initMagnetic(root);
+    initSpotlight(root);
+    initPack3d(root);
+    initAnchors(root);
+    revealSafetyNet();
   }
 
   window.NOZ = { init: init, __ready: true };

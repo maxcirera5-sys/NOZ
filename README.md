@@ -31,8 +31,11 @@ snippets/
   noz-icon.liquid            Line‑style SVG icon system (currentColor)
 
 assets/
-  noz-base.css               Design tokens, typography & shared components
-  noz.js                     Reveal‑on‑scroll · carousels · accordions · count‑up · forms
+  noz-base.css               Design tokens, typography, 3D package & shared components
+  noz.js                     Reveal · carousels · accordions · count‑up · forms ·
+                             3D package · card tilt · magnetic buttons · spotlight
+  noz-pack-front.jpg         NOZ pouch — front face (for the 3D packaging)
+  noz-pack-back.jpg          NOZ pouch — back face (for the 3D packaging)
 
 templates/
   page.noz-landing.json      Ready‑made page that assembles all 10 sections in order
@@ -90,13 +93,48 @@ and paste your provider's endpoint into *"URL de envío externa"*.
 
 ---
 
+## 🔄 3D rotating packaging (section 07)
+
+The Product Reveal section renders the **NOZ pouch as a real 3D object** that
+auto‑rotates and can be **dragged to spin** (with momentum). It's built with pure
+CSS 3D transforms + one small vanilla‑JS driver — no Three.js, no libraries.
+
+- Front/back faces ship pre‑cropped from the brand photography (`assets/noz-pack-*.jpg`)
+  and can be replaced in the Customizer (*"Cara frontal / trasera del packaging"*).
+- **Velocidad de giro** slider controls auto‑rotation speed (set 0 to spin only on drag).
+- Side gussets + soft floor shadow + accent glow give it real depth.
+- Toggle off (*"Mostrar packaging 3D giratorio"*) to fall back to a flat product image.
+- Respects `prefers-reduced-motion` (no auto‑spin; drag still works).
+
+## ✨ Premium UX interactions
+
+Added throughout, all vanilla JS and mobile‑safe:
+
+- **Card 3D tilt** on Benefits and How‑it‑works cards (pointer‑reactive).
+- **Magnetic buttons** on primary CTAs.
+- **Pointer spotlight** that follows the cursor across the hero.
+- **Scroll‑reveal** with staggered delays + a safety net that never leaves content hidden.
+- **Count‑up** stats, **marquee**, button **sheen sweep**, smooth in‑page anchors.
+- Touch/`hover:none` devices and reduced‑motion users automatically get the calm version.
+
 ## ⚙️ Performance, SEO & accessibility
 
 - Pure CSS/SVG animations; **all motion respects `prefers-reduced-motion`**.
 - Images use Shopify `image_tag` with responsive `widths`/`sizes` and lazy loading (hero is eager).
 - Semantic headings, `aria` on accordions/carousels/forms, visible focus states, AA contrast.
-- Optional font control: add a checkbox setting `noz_disable_fonts` to `config/settings_schema.json`
-  to skip the Google Fonts request and fall back to the system stack (Titillium/Inter are the brand fonts).
+- Font loading is controllable with two optional theme settings (add to
+  `config/settings_schema.json`): `noz_disable_local_fonts` (skip the @font-face OTFs)
+  and `noz_disable_google_fonts` (skip the Google Fonts fallback).
+
+## 🔤 Fonts (brand: Adobe Source)
+
+Headlines & body use **Source Sans**; technical labels (eyebrows, tags, steps,
+stat captions) use **Source Code** — matching the NOZ brandbook.
+
+To use the exact brand OTFs, upload these variable fonts to the theme's **assets** folder:
+`SourceSansVariable-Roman.otf`, `SourceSansVariable-Italic.otf`, `SourceCodeVariable-Roman.otf`.
+If they're absent, the identical Google webfonts **Source Sans 3** / **Source Code Pro**
+load automatically as a pixel‑close fallback — nothing breaks either way.
 
 ## 🧩 Brand tokens (from the NOZ brandbook)
 
@@ -105,7 +143,7 @@ and paste your provider's endpoint into *"URL de envío externa"*.
 | Accent (lime) | `#C6F000` |
 | Background | `#080808` |
 | White | `#FFFFFF` |
-| Headline font | Titillium Web (900) |
-| Body font | Inter |
+| Display / body font | Source Sans (900 / 400‑700) |
+| Technical labels | Source Code Pro (600) |
 
 Adjust globally in `assets/noz-base.css` (`:root`) or per‑section in the Customizer.
