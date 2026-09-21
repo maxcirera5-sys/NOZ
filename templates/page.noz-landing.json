@@ -1,0 +1,115 @@
+{
+  "sections": {
+    "hero": {
+      "type": "noz-hero",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "airflow", "label": "Más aire" } },
+        "f2": { "type": "feature", "settings": { "icon": "performance", "label": "Más rendimiento" } },
+        "f3": { "type": "feature", "settings": { "icon": "sleep", "label": "Mejor descanso" } },
+        "f4": { "type": "feature", "settings": { "icon": "drug-free", "label": "Sin fármacos" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {
+        "badge": "Lanzamiento Q4 2026",
+        "eyebrow": "Tiras nasales de alto rendimiento",
+        "title_line1": "Respira mejor.",
+        "title_line2": "Rinde más.",
+        "subheading": "Optimiza tu flujo de aire. Maximiza tu rendimiento.",
+        "cta1_label": "Descubrir NOZ",
+        "cta2_label": "Cómo funciona",
+        "cta2_link": "#noz-how",
+        "height": "full",
+        "scroll_hint": true
+      }
+    },
+    "problem": {
+      "type": "noz-problem",
+      "settings": {}
+    },
+    "how": {
+      "type": "noz-how-it-works",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "icon": "strips", "title": "Aplicar", "text": "Coloca la tira NOZ sobre el puente de la nariz y presiona suavemente los extremos." } },
+        "s2": { "type": "step", "settings": { "icon": "nose", "title": "Abrir", "text": "La tira eleva las paredes nasales y abre las vías para dejar pasar más aire." } },
+        "s3": { "type": "step", "settings": { "icon": "airflow", "title": "Respirar", "text": "Disfruta de un flujo de aire optimizado al instante, en entrenamiento o descanso." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {}
+    },
+    "benefits": {
+      "type": "noz-benefits",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "airflow", "title": "Flujo de aire optimizado", "text": "Eleva las paredes nasales y abre las vías para dejar pasar más aire, sin esfuerzo." } },
+        "b2": { "type": "benefit", "settings": { "icon": "performance", "title": "Máximo rendimiento", "text": "Más oxígeno se traduce en más energía, mejor ritmo y una recuperación más rápida." } },
+        "b3": { "type": "benefit", "settings": { "icon": "oxygen", "title": "Mejor oxigenación", "text": "Ayuda a que llegue más aire a tus pulmones en cada respiración." } },
+        "b4": { "type": "benefit", "settings": { "icon": "comfort", "title": "Mayor comodidad respiratoria", "text": "Adhesivo de grado médico y ajuste suave para entrenar o dormir sin molestias." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {}
+    },
+    "why": {
+      "type": "noz-why-breathing",
+      "blocks": {
+        "n1": { "type": "node", "settings": { "icon": "nose", "title": "Entrada de aire", "text": "El aire entra por la nariz, tu filtro natural. Si las vías están estrechas, entra menos." } },
+        "n2": { "type": "node", "settings": { "icon": "lungs", "title": "Llega a los pulmones", "text": "Un mayor flujo de aire lleva más oxígeno a los alvéolos con cada respiración." } },
+        "n3": { "type": "node", "settings": { "icon": "oxygen", "title": "Pasa a la sangre", "text": "El oxígeno viaja por la sangre hasta los músculos que están trabajando." } },
+        "n4": { "type": "node", "settings": { "icon": "performance", "title": "Impulsa el rendimiento", "text": "Más oxígeno = más energía, mejor resistencia y una recuperación más rápida." } },
+        "st1": { "type": "stat", "settings": { "value": "20", "prefix": "+", "suffix": "%", "decimals": "0", "label": "más flujo de aire potencial" } },
+        "st2": { "type": "stat", "settings": { "value": "40", "prefix": "-", "suffix": "%", "decimals": "0", "label": "menos resistencia nasal al aire" } },
+        "st3": { "type": "stat", "settings": { "value": "100", "prefix": "", "suffix": "%", "decimals": "0", "label": "mejora mecánica, sin fármacos" } }
+      },
+      "block_order": ["n1", "n2", "n3", "n4", "st1", "st2", "st3"],
+      "settings": {}
+    },
+    "who": {
+      "type": "noz-who-for",
+      "blocks": {
+        "d1": { "type": "discipline", "settings": { "icon": "running", "label": "Running" } },
+        "d2": { "type": "discipline", "settings": { "icon": "cycling", "label": "Cycling" } },
+        "d3": { "type": "discipline", "settings": { "icon": "crossfit", "label": "CrossFit" } },
+        "d4": { "type": "discipline", "settings": { "icon": "gym", "label": "Gym" } },
+        "d5": { "type": "discipline", "settings": { "icon": "padel", "label": "Pádel" } },
+        "d6": { "type": "discipline", "settings": { "icon": "hiking", "label": "Hiking" } }
+      },
+      "block_order": ["d1", "d2", "d3", "d4", "d5", "d6"],
+      "settings": {}
+    },
+    "product": {
+      "type": "noz-product-reveal",
+      "blocks": {
+        "p1": { "type": "spec", "settings": { "icon": "strips", "title": "30 tiras", "subtitle": "Un mes de rendimiento" } },
+        "p2": { "type": "spec", "settings": { "icon": "medical", "title": "Adhesivo grado médico", "subtitle": "Sujeción segura" } },
+        "p3": { "type": "spec", "settings": { "icon": "no-drug", "title": "Sin medicamentos", "subtitle": "100% mecánico" } },
+        "p4": { "type": "spec", "settings": { "icon": "no-latex", "title": "Sin látex", "subtitle": "Apto para piel sensible" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"],
+      "settings": {}
+    },
+    "email": {
+      "type": "noz-email-capture",
+      "settings": {}
+    },
+    "faq": {
+      "type": "noz-faq",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "¿Qué son las tiras nasales?", "answer": "<p>Son bandas flexibles con adhesivo de grado médico que se colocan sobre el puente de la nariz. Al fijarse, elevan suavemente las paredes nasales para abrir las vías respiratorias.</p>" } },
+        "q2": { "type": "faq", "settings": { "question": "¿Cómo funcionan?", "answer": "<p>Funcionan de forma 100% mecánica, sin fármacos. Los extremos adhesivos ejercen una tensión suave que separa las fosas nasales, reduce la resistencia al aire y aumenta el flujo con cada respiración.</p>" } },
+        "q3": { "type": "faq", "settings": { "question": "¿Pueden usarlas los deportistas?", "answer": "<p>Sí. NOZ está pensado para running, ciclismo, CrossFit, gimnasio, pádel, senderismo y cualquier disciplina. Al no contener sustancias, es apto para el deporte.</p>" } },
+        "q4": { "type": "faq", "settings": { "question": "¿Se pueden usar durante el sueño?", "answer": "<p>Totalmente. Muchas personas las usan de noche para respirar mejor, reducir la sequedad bucal y descansar de forma más profunda.</p>" } },
+        "q5": { "type": "faq", "settings": { "question": "¿Cuánto duran?", "answer": "<p>Cada tira es de un solo uso y mantiene su efecto durante horas. Cada caja incluye 30 tiras, suficiente para un mes de uso diario.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": {}
+    },
+    "footer": {
+      "type": "noz-footer",
+      "blocks": {
+        "m1": { "type": "menu", "settings": { "heading": "Producto", "l1_label": "Cómo funciona", "l1_link": "#noz-how", "l2_label": "Beneficios", "l3_label": "Para quién", "l4_label": "FAQ" } },
+        "m2": { "type": "menu", "settings": { "heading": "Marca", "l1_label": "Sobre NOZ", "l2_label": "Journal", "l3_label": "Contacto" } }
+      },
+      "block_order": ["m1", "m2"],
+      "settings": {}
+    }
+  },
+  "order": ["hero", "problem", "how", "benefits", "why", "who", "product", "email", "faq", "footer"]
+}

@@ -1,0 +1,100 @@
+{%- comment -%}
+  NOZ · Section 04 — BENEFITS (4 cards)
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+-%}
+
+<section class="noz noz-section noz-benefits" id="noz-benefits-{{ sid }}"
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};">
+  <span class="noz-glow noz-benefits__glow" aria-hidden="true"></span>
+  <div class="noz-wrap">
+    <div class="noz-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="noz-eyebrow noz-reveal">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="noz-h2 noz-reveal" data-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="noz-lead noz-reveal" data-delay="2">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+
+    <div class="noz-benefits__grid">
+      {%- for block in section.blocks -%}
+        <article class="noz-benefits__card noz-card noz-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <span class="noz-ico">{% render 'noz-icon', icon: block.settings.icon, size: 30 %}</span>
+          <h3 class="noz-h3">{{ block.settings.title }}</h3>
+          <p class="noz-body">{{ block.settings.text }}</p>
+          {%- if block.settings.stat != blank -%}
+            <span class="noz-benefits__stat">{{ block.settings.stat }}</span>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-benefits__glow { width: 500px; height: 500px; background: var(--noz-accent);
+    opacity: .08; top: -180px; right: -160px; }
+  #shopify-section-{{ sid }} .noz-benefits__grid {
+    display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(14px, 1.6vw, 22px); }
+  #shopify-section-{{ sid }} .noz-benefits__card { display: flex; flex-direction: column; position: relative; }
+  #shopify-section-{{ sid }} .noz-benefits__card .noz-h3 { margin-bottom: 12px; }
+  #shopify-section-{{ sid }} .noz-benefits__card .noz-body { flex: 1; }
+  #shopify-section-{{ sid }} .noz-benefits__stat {
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--noz-line);
+    font-family: var(--noz-font-head); font-weight: 700; color: var(--noz-accent);
+    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+  #shopify-section-{{ sid }} .noz-benefits__card:hover .noz-ico { background: var(--noz-accent); color: #060a00; transition: .3s; }
+
+  @media (max-width: 999px) { #shopify-section-{{ sid }} .noz-benefits__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { #shopify-section-{{ sid }} .noz-benefits__grid { grid-template-columns: 1fr; } }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · Beneficios",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Beneficios" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Diseñado para rendir." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Cada tira NOZ trabaja para darte más aire cuando más lo necesitas." },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "options": [
+          { "value": "airflow", "label": "Flujo de aire" },
+          { "value": "performance", "label": "Rendimiento" },
+          { "value": "oxygen", "label": "Oxígeno" },
+          { "value": "comfort", "label": "Comodidad" },
+          { "value": "lungs", "label": "Pulmones" },
+          { "value": "sleep", "label": "Sueño" },
+          { "value": "drug-free", "label": "Sin fármacos" } ], "default": "airflow" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Flujo de aire optimizado" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Abre las vías nasales para que respires con menos esfuerzo." },
+        { "type": "text", "id": "stat", "label": "Micro-dato (opcional)", "default": "" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "NOZ · Beneficios",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "airflow", "title": "Flujo de aire optimizado", "text": "Eleva las paredes nasales y abre las vías para dejar pasar más aire, sin esfuerzo." } },
+        { "type": "benefit", "settings": { "icon": "performance", "title": "Máximo rendimiento", "text": "Más oxígeno se traduce en más energía, mejor ritmo y una recuperación más rápida." } },
+        { "type": "benefit", "settings": { "icon": "oxygen", "title": "Mejor oxigenación", "text": "Ayuda a que llegue más aire a tus pulmones en cada respiración." } },
+        { "type": "benefit", "settings": { "icon": "comfort", "title": "Mayor comodidad respiratoria", "text": "Adhesivo de grado médico y ajuste suave para entrenar o dormir sin molestias." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

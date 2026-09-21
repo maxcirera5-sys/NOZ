@@ -1,0 +1,148 @@
+{%- comment -%}
+  NOZ · Section 02 — PROBLEM
+  Airflow comparison: restricted vs optimized.
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+-%}
+
+<section class="noz noz-section noz-problem" id="noz-problem-{{ sid }}"
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};">
+  <span class="noz-glow noz-problem__glow" aria-hidden="true"></span>
+
+  <div class="noz-wrap noz-problem__grid">
+    <div class="noz-problem__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="noz-eyebrow noz-reveal">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="noz-h2 noz-reveal" data-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.body != blank -%}
+        <p class="noz-lead noz-reveal" data-delay="2">{{ section.settings.body }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.stat_number != blank -%}
+        <div class="noz-problem__stat noz-reveal" data-delay="3">
+          <span class="noz-problem__stat-num"
+            data-count="{{ section.settings.stat_value }}"
+            data-suffix="{{ section.settings.stat_suffix }}">0{{ section.settings.stat_suffix }}</span>
+          <span class="noz-problem__stat-label">{{ section.settings.stat_number }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="noz-problem__viz noz-reveal" data-delay="2" aria-hidden="true">
+      <!-- Restricted -->
+      <div class="noz-airway noz-airway--bad">
+        <div class="noz-airway__label">{{ section.settings.label_bad | default: 'Sin NOZ' }}</div>
+        <svg viewBox="0 0 200 150" class="noz-airway__svg">
+          <path class="noz-nose" d="M100 18 C 92 45, 82 62, 78 84 C 75 100, 84 112, 100 112 C 116 112, 125 100, 122 84 C 118 62, 108 45, 100 18 Z"/>
+          <path class="noz-passage noz-passage--narrow" d="M92 60 C 90 78, 92 92, 100 96"/>
+          <g class="noz-airlines noz-airlines--weak">
+            <path d="M60 128 h22"/><path d="M118 128 h22"/>
+          </g>
+        </svg>
+        <div class="noz-airway__meter"><span style="width:38%"></span></div>
+        <div class="noz-airway__caption">Flujo restringido</div>
+      </div>
+
+      <div class="noz-airway__vs">VS</div>
+
+      <!-- Optimized -->
+      <div class="noz-airway noz-airway--good">
+        <div class="noz-airway__label">{{ section.settings.label_good | default: 'Con NOZ' }}</div>
+        <svg viewBox="0 0 200 150" class="noz-airway__svg">
+          <path class="noz-strip" d="M62 44 C 80 36, 120 36, 138 44 C 142 50, 140 58, 132 58 C 118 52, 82 52, 68 58 C 60 58, 58 50, 62 44 Z"/>
+          <path class="noz-nose" d="M100 18 C 92 45, 82 62, 78 84 C 75 100, 84 112, 100 112 C 116 112, 125 100, 122 84 C 118 62, 108 45, 100 18 Z"/>
+          <path class="noz-passage noz-passage--wide" d="M86 60 C 82 80, 86 94, 100 98"/>
+          <g class="noz-airlines noz-airlines--strong">
+            <path d="M52 122 h30"/><path d="M118 122 h30"/>
+            <path d="M56 132 h26"/><path d="M118 132 h26"/>
+          </g>
+        </svg>
+        <div class="noz-airway__meter is-good"><span style="width:92%"></span></div>
+        <div class="noz-airway__caption">Flujo optimizado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-problem__glow { width: 460px; height: 460px; background: var(--noz-accent);
+    opacity: .10; bottom: -220px; left: -140px; }
+  #shopify-section-{{ sid }} .noz-problem__grid {
+    display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(36px, 6vw, 90px); align-items: center; }
+  #shopify-section-{{ sid }} .noz-problem__copy .noz-lead { margin-top: 24px; }
+
+  #shopify-section-{{ sid }} .noz-problem__stat { margin-top: 40px; display: flex; align-items: baseline; gap: 16px;
+    border-top: 1px solid var(--noz-line); padding-top: 26px; }
+  #shopify-section-{{ sid }} .noz-problem__stat-num { font-family: var(--noz-font-head); font-weight: 900;
+    font-size: clamp(2.8rem, 6vw, 4rem); color: var(--noz-accent); line-height: 1; }
+  #shopify-section-{{ sid }} .noz-problem__stat-label { color: var(--noz-muted); font-size: .95rem; max-width: 22ch; }
+
+  #shopify-section-{{ sid }} .noz-problem__viz {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(10px, 2vw, 22px); align-items: center; }
+  #shopify-section-{{ sid }} .noz-airway {
+    background: linear-gradient(180deg, var(--noz-surface), var(--noz-bg-2));
+    border: 1px solid var(--noz-line); border-radius: var(--noz-radius); padding: 20px 16px 22px; text-align: center; }
+  #shopify-section-{{ sid }} .noz-airway--good { border-color: rgba(198,240,0,.35); box-shadow: 0 24px 60px -30px rgba(198,240,0,.4); }
+  #shopify-section-{{ sid }} .noz-airway__label {
+    font-family: var(--noz-font-head); font-weight: 700; text-transform: uppercase; letter-spacing: .14em;
+    font-size: .68rem; color: var(--noz-muted); margin-bottom: 8px; }
+  #shopify-section-{{ sid }} .noz-airway--good .noz-airway__label { color: var(--noz-accent); }
+  #shopify-section-{{ sid }} .noz-airway__vs {
+    font-family: var(--noz-font-head); font-weight: 900; color: var(--noz-muted-2); font-size: .9rem; }
+
+  #shopify-section-{{ sid }} .noz-airway__svg { width: 100%; height: auto; }
+  #shopify-section-{{ sid }} .noz-nose { fill: none; stroke: rgba(255,255,255,.25); stroke-width: 2; }
+  #shopify-section-{{ sid }} .noz-passage { fill: none; stroke-linecap: round; }
+  #shopify-section-{{ sid }} .noz-passage--narrow { stroke: rgba(255,255,255,.3); stroke-width: 3; }
+  #shopify-section-{{ sid }} .noz-passage--wide { stroke: var(--noz-accent); stroke-width: 7; }
+  #shopify-section-{{ sid }} .noz-strip { fill: var(--noz-accent); opacity: .9; }
+  #shopify-section-{{ sid }} .noz-airlines path { fill: none; stroke-linecap: round; stroke-dasharray: 6 8; }
+  #shopify-section-{{ sid }} .noz-airlines--weak path { stroke: rgba(255,255,255,.3); stroke-width: 2; animation: noz-air 3.5s linear infinite; }
+  #shopify-section-{{ sid }} .noz-airlines--strong path { stroke: var(--noz-accent); stroke-width: 2.4; animation: noz-air 1.5s linear infinite; }
+  @keyframes noz-air { to { stroke-dashoffset: -28; } }
+
+  #shopify-section-{{ sid }} .noz-airway__meter { height: 8px; border-radius: 999px; background: rgba(255,255,255,.08);
+    overflow: hidden; margin: 14px 6px 10px; }
+  #shopify-section-{{ sid }} .noz-airway__meter span { display: block; height: 100%; border-radius: 999px;
+    background: rgba(255,255,255,.35); }
+  #shopify-section-{{ sid }} .noz-airway__meter.is-good span { background: var(--noz-accent); }
+  #shopify-section-{{ sid }} .noz-airway__caption { font-size: .78rem; color: var(--noz-muted); }
+  #shopify-section-{{ sid }} .noz-airway--good .noz-airway__caption { color: var(--noz-text); }
+
+  @media (max-width: 899px) {
+    #shopify-section-{{ sid }} .noz-problem__grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ sid }} .noz-airlines path { animation: none; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · Problema",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "El problema" },
+    { "type": "textarea", "id": "title", "label": "Título", "default": "La mayoría de personas no respiran tan bien como podrían." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Las vías nasales congestionadas o estrechas limitan el aire que llega a tus pulmones. Menos oxígeno significa menos energía, peor recuperación y un rendimiento por debajo de tu potencial." },
+    { "type": "header", "content": "Dato" },
+    { "type": "text", "id": "stat_number", "label": "Descripción del dato", "default": "más de resistencia al aire con las vías nasales estrechadas" },
+    { "type": "text", "id": "stat_value", "label": "Valor numérico", "default": "40" },
+    { "type": "text", "id": "stat_suffix", "label": "Sufijo", "default": "%" },
+    { "type": "header", "content": "Comparación visual" },
+    { "type": "text", "id": "label_bad", "label": "Etiqueta izquierda", "default": "Sin NOZ" },
+    { "type": "text", "id": "label_good", "label": "Etiqueta derecha", "default": "Con NOZ" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "presets": [ { "name": "NOZ · Problema" } ]
+}
+{% endschema %}

@@ -1,0 +1,191 @@
+{%- comment -%}
+  NOZ · Section 07 — PRODUCT REVEAL
+  30 tiras · adhesivo grado médico · sin medicamentos · sin látex
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+  assign product = section.settings.product
+-%}
+
+<section class="noz noz-section noz-product" id="noz-product-{{ sid }}"
+  data-noz-parallax-scope
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};">
+  <span class="noz-glow noz-product__glow" aria-hidden="true"></span>
+  <div class="noz-wrap noz-product__grid">
+
+    <div class="noz-product__media noz-reveal">
+      <div class="noz-product__media-inner" data-noz-parallax="10">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1200 | image_tag:
+            loading: 'lazy', sizes: '(max-width: 899px) 90vw, 46vw',
+            widths: '400,600,800,1000,1200', alt: section.settings.image.alt | default: 'NOZ Tiras Nasales' }}
+        {%- elsif product != blank and product.featured_image != blank -%}
+          {{ product.featured_image | image_url: width: 1200 | image_tag:
+            loading: 'lazy', sizes: '(max-width: 899px) 90vw, 46vw', widths: '400,600,800,1000,1200', alt: product.title }}
+        {%- else -%}
+          <div class="noz-product__placeholder">
+            <span class="noz-product__ph-logo">NOZ</span>
+            <span class="noz-product__ph-sub">Tiras Nasales</span>
+            <span class="noz-product__ph-count">{{ section.settings.count_number | default: '30' }}<small>{{ section.settings.count_label | default: 'tiras' }}</small></span>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.badge != blank -%}
+        <span class="noz-product__float noz-product__float--1" data-noz-parallax="22">{{ section.settings.badge }}</span>
+      {%- endif -%}
+      <span class="noz-product__float noz-product__float--2" data-noz-parallax="16">{% render 'noz-icon', icon: 'medical', size: 16 %} Grado médico</span>
+    </div>
+
+    <div class="noz-product__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="noz-eyebrow noz-reveal">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="noz-h2 noz-reveal" data-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.body != blank -%}<p class="noz-lead noz-reveal" data-delay="2">{{ section.settings.body }}</p>{%- endif -%}
+
+      <ul class="noz-product__specs noz-reveal" data-delay="3">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <span class="noz-product__spec-ico">{% render 'noz-icon', icon: block.settings.icon, size: 22 %}</span>
+            <span class="noz-product__spec-text"><strong>{{ block.settings.title }}</strong>{% if block.settings.subtitle != blank %}<em>{{ block.settings.subtitle }}</em>{% endif %}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="noz-product__actions noz-reveal" data-delay="4">
+        {%- if section.settings.price_text != blank -%}
+          <span class="noz-product__price">{{ section.settings.price_text }}</span>
+        {%- elsif product != blank -%}
+          <span class="noz-product__price">{{ product.price | money }}</span>
+        {%- endif -%}
+        {%- if section.settings.cta_label != blank -%}
+          <a class="noz-btn" href="{{ section.settings.cta_link | default: '#' }}">{{ section.settings.cta_label }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-product__glow { width: 620px; height: 620px; background: var(--noz-accent);
+    opacity: .12; top: 50%; left: 8%; transform: translateY(-50%); }
+  #shopify-section-{{ sid }} .noz-product__grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px,6vw,90px); align-items: center; }
+
+  #shopify-section-{{ sid }} .noz-product__media { position: relative; }
+  #shopify-section-{{ sid }} .noz-product__media-inner {
+    position: relative; border-radius: var(--noz-radius); overflow: visible; transition: transform .3s var(--noz-ease); }
+  #shopify-section-{{ sid }} .noz-product__media img {
+    width: 100%; height: auto; display: block; border-radius: var(--noz-radius);
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,.6)); }
+
+  #shopify-section-{{ sid }} .noz-product__placeholder {
+    aspect-ratio: 4 / 5; border-radius: var(--noz-radius);
+    background:
+      radial-gradient(120% 90% at 50% 0%, rgba(198,240,0,.12), transparent 60%),
+      linear-gradient(180deg, #141414, #050505);
+    border: 1px solid var(--noz-line-strong);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; position: relative; }
+  #shopify-section-{{ sid }} .noz-product__ph-logo {
+    font-family: var(--noz-font-head); font-weight: 900; font-size: clamp(3.4rem,9vw,6rem); color: var(--noz-white);
+    letter-spacing: .02em; line-height: 1; }
+  #shopify-section-{{ sid }} .noz-product__ph-sub {
+    font-family: var(--noz-font-head); font-weight: 700; text-transform: uppercase; letter-spacing: .35em;
+    color: var(--noz-accent); font-size: .8rem; }
+  #shopify-section-{{ sid }} .noz-product__ph-count {
+    margin-top: 22px; font-family: var(--noz-font-head); font-weight: 900; font-size: 2.6rem; color: var(--noz-accent); line-height: 1; }
+  #shopify-section-{{ sid }} .noz-product__ph-count small { display: block; font-size: .8rem; color: var(--noz-muted);
+    letter-spacing: .3em; text-transform: uppercase; font-weight: 700; }
+
+  #shopify-section-{{ sid }} .noz-product__float {
+    position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(15,15,15,.85); backdrop-filter: blur(8px); border: 1px solid var(--noz-line-strong);
+    color: var(--noz-white); font-family: var(--noz-font-head); font-weight: 700; font-size: .72rem;
+    letter-spacing: .08em; text-transform: uppercase; padding: 10px 16px; border-radius: 999px; }
+  #shopify-section-{{ sid }} .noz-product__float--1 { top: 8%; right: -4%; color: var(--noz-accent); border-color: rgba(198,240,0,.4); }
+  #shopify-section-{{ sid }} .noz-product__float--2 { bottom: 10%; left: -5%; color: var(--noz-accent); }
+  #shopify-section-{{ sid }} .noz-product__float--2 svg { color: var(--noz-accent); }
+
+  #shopify-section-{{ sid }} .noz-product__specs { list-style: none; margin: 32px 0 0; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  #shopify-section-{{ sid }} .noz-product__specs li {
+    display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--noz-line);
+    border-radius: var(--noz-radius-sm); background: var(--noz-surface); transition: border-color .3s; }
+  #shopify-section-{{ sid }} .noz-product__specs li:hover { border-color: var(--noz-line-strong); }
+  #shopify-section-{{ sid }} .noz-product__spec-ico {
+    color: var(--noz-accent); flex: 0 0 auto; width: 40px; height: 40px; border-radius: 10px;
+    background: var(--noz-accent-soft); display: inline-flex; align-items: center; justify-content: center; }
+  #shopify-section-{{ sid }} .noz-product__spec-text { display: flex; flex-direction: column; line-height: 1.25; }
+  #shopify-section-{{ sid }} .noz-product__spec-text strong { color: var(--noz-white); font-size: .95rem; font-weight: 600; }
+  #shopify-section-{{ sid }} .noz-product__spec-text em { color: var(--noz-muted); font-style: normal; font-size: .8rem; margin-top: 2px; }
+
+  #shopify-section-{{ sid }} .noz-product__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-top: 34px; }
+  #shopify-section-{{ sid }} .noz-product__price { font-family: var(--noz-font-head); font-weight: 900;
+    font-size: 1.8rem; color: var(--noz-white); }
+
+  @media (max-width: 899px) {
+    #shopify-section-{{ sid }} .noz-product__grid { grid-template-columns: 1fr; }
+    #shopify-section-{{ sid }} .noz-product__float--1 { right: 4%; }
+    #shopify-section-{{ sid }} .noz-product__float--2 { left: 4%; }
+  }
+  @media (max-width: 480px) {
+    #shopify-section-{{ sid }} .noz-product__specs { grid-template-columns: 1fr; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · Producto",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "El producto" },
+    { "type": "text", "id": "title", "label": "Título", "default": "NOZ Tiras Nasales" },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Lo que hay dentro marca la diferencia. Diseñadas para elevar suavemente los conductos nasales y ayudarte a respirar más y rendir mejor." },
+    { "type": "product", "id": "product", "label": "Producto vinculado (opcional)", "info": "Si lo eliges, se usa su imagen y precio." },
+    { "type": "image_picker", "id": "image", "label": "Imagen del producto (opcional)" },
+    { "type": "text", "id": "count_number", "label": "Nº de tiras (placeholder)", "default": "30" },
+    { "type": "text", "id": "count_label", "label": "Etiqueta unidades", "default": "tiras" },
+    { "type": "text", "id": "badge", "label": "Insignia flotante", "default": "30 tiras" },
+    { "type": "header", "content": "Compra" },
+    { "type": "text", "id": "price_text", "label": "Precio (texto libre)", "info": "Déjalo vacío para usar el precio del producto vinculado.", "default": "" },
+    { "type": "text", "id": "cta_label", "label": "Botón", "default": "Únete al lanzamiento" },
+    { "type": "url", "id": "cta_link", "label": "Enlace del botón" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Característica",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "options": [
+          { "value": "strips", "label": "Tiras" },
+          { "value": "medical", "label": "Grado médico" },
+          { "value": "no-drug", "label": "Sin medicamentos" },
+          { "value": "no-latex", "label": "Sin látex" },
+          { "value": "comfort", "label": "Comodidad" },
+          { "value": "check", "label": "Check" } ], "default": "strips" },
+        { "type": "text", "id": "title", "label": "Título", "default": "30 tiras" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Un mes de rendimiento" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "NOZ · Producto",
+      "blocks": [
+        { "type": "spec", "settings": { "icon": "strips", "title": "30 tiras", "subtitle": "Un mes de rendimiento" } },
+        { "type": "spec", "settings": { "icon": "medical", "title": "Adhesivo grado médico", "subtitle": "Sujeción segura" } },
+        { "type": "spec", "settings": { "icon": "no-drug", "title": "Sin medicamentos", "subtitle": "100% mecánico" } },
+        { "type": "spec", "settings": { "icon": "no-latex", "title": "Sin látex", "subtitle": "Apto para piel sensible" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

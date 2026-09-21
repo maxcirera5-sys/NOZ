@@ -1,0 +1,17 @@
+{%- comment -%}
+  NOZ — shared head loader
+  Renders brand fonts + base stylesheet + shared JS.
+  Rendered at the top of every NOZ section. Duplicate <link>
+  tags are de-duped by the browser; noz.js guards against
+  double-execution, so including this per-section is safe.
+
+  Usage:  {% render 'noz-head' %}
+{%- endcomment -%}
+{%- unless settings.noz_disable_fonts -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,700;0,900;1,700;1,900&family=Inter:wght@400;500;600;700&display=swap">
+{%- endunless -%}
+{{ 'noz-base.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'noz.js' | asset_url }}" defer></script>

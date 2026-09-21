@@ -1,0 +1,113 @@
+{%- comment -%}
+  NOZ · Section 09 — FAQ (accordion)
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+-%}
+
+<section class="noz noz-section noz-faq" id="noz-faq-{{ sid }}"
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};">
+  <div class="noz-wrap noz-faq__grid">
+    <div class="noz-faq__aside">
+      {%- if section.settings.eyebrow != blank -%}<p class="noz-eyebrow noz-reveal">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="noz-h2 noz-reveal" data-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="noz-lead noz-reveal" data-delay="2">{{ section.settings.subtitle }}</p>{%- endif -%}
+      {%- if section.settings.cta_label != blank -%}
+        <a class="noz-btn noz-btn--ghost noz-faq__cta noz-reveal" data-delay="3" href="{{ section.settings.cta_link | default: '#' }}">
+          {% render 'noz-icon', icon: 'mail', size: 16 %}{{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="noz-faq__list" data-noz-accordion-group>
+      {%- for block in section.blocks -%}
+        <div class="noz-faq__item noz-reveal" data-delay="{{ forloop.index | modulo: 5 }}" data-noz-accordion {{ block.shopify_attributes }}>
+          <button class="noz-faq__q" type="button" data-acc-trigger aria-expanded="false" aria-controls="noz-faq-{{ sid }}-{{ forloop.index }}">
+            <span>{{ block.settings.question }}</span>
+            <span class="noz-faq__icon" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="noz-faq__a" id="noz-faq-{{ sid }}-{{ forloop.index }}" data-acc-panel role="region">
+            <div class="noz-faq__a-inner">{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-faq__grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(36px,6vw,80px); align-items: start; }
+  #shopify-section-{{ sid }} .noz-faq__aside { position: sticky; top: 90px; }
+  #shopify-section-{{ sid }} .noz-faq__aside .noz-lead { margin-top: 20px; }
+  #shopify-section-{{ sid }} .noz-faq__cta { margin-top: 30px; }
+
+  #shopify-section-{{ sid }} .noz-faq__item { border-bottom: 1px solid var(--noz-line); }
+  #shopify-section-{{ sid }} .noz-faq__item:first-child { border-top: 1px solid var(--noz-line); }
+  #shopify-section-{{ sid }} .noz-faq__q {
+    width: 100%; background: none; border: 0; cursor: pointer; text-align: left;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px 4px;
+    font-family: var(--noz-font-head); font-weight: 700; text-transform: uppercase; letter-spacing: .01em;
+    font-size: clamp(1rem,1.6vw,1.2rem); color: var(--noz-white); transition: color .3s; }
+  #shopify-section-{{ sid }} .noz-faq__q:hover { color: var(--noz-accent); }
+  #shopify-section-{{ sid }} .noz-faq__item.is-open .noz-faq__q { color: var(--noz-accent); }
+
+  #shopify-section-{{ sid }} .noz-faq__icon { position: relative; width: 18px; height: 18px; flex: 0 0 auto; }
+  #shopify-section-{{ sid }} .noz-faq__icon i { position: absolute; background: currentColor; border-radius: 2px; transition: transform .35s var(--noz-ease); }
+  #shopify-section-{{ sid }} .noz-faq__icon i:first-child { top: 8px; left: 0; width: 18px; height: 2px; }
+  #shopify-section-{{ sid }} .noz-faq__icon i:last-child { top: 0; left: 8px; width: 2px; height: 18px; }
+  #shopify-section-{{ sid }} .noz-faq__item.is-open .noz-faq__icon i:last-child { transform: scaleY(0); }
+
+  #shopify-section-{{ sid }} .noz-faq__a { max-height: 0; overflow: hidden; transition: max-height .4s var(--noz-ease); }
+  #shopify-section-{{ sid }} .noz-faq__a-inner { padding: 0 4px 28px; color: var(--noz-muted); line-height: 1.65; max-width: 62ch; }
+  #shopify-section-{{ sid }} .noz-faq__a-inner a { color: var(--noz-accent); }
+
+  @media (max-width: 849px) {
+    #shopify-section-{{ sid }} .noz-faq__grid { grid-template-columns: 1fr; }
+    #shopify-section-{{ sid }} .noz-faq__aside { position: static; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · FAQ",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Preguntas frecuentes" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Todo lo que necesitas saber." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "¿Aún tienes dudas sobre NOZ? Aquí tienes las respuestas." },
+    { "type": "text", "id": "cta_label", "label": "Botón (opcional)", "default": "Escríbenos" },
+    { "type": "url", "id": "cta_link", "label": "Enlace del botón" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Qué son las tiras nasales?" },
+        { "type": "richtext", "id": "answer", "label": "Respuesta", "default": "<p>Son bandas flexibles con adhesivo de grado médico que se colocan sobre el puente de la nariz.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "NOZ · FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "¿Qué son las tiras nasales?", "answer": "<p>Son bandas flexibles con adhesivo de grado médico que se colocan sobre el puente de la nariz. Al fijarse, elevan suavemente las paredes nasales para abrir las vías respiratorias.</p>" } },
+        { "type": "faq", "settings": { "question": "¿Cómo funcionan?", "answer": "<p>Funcionan de forma 100% mecánica, sin fármacos. Los extremos adhesivos ejercen una tensión suave que separa las fosas nasales, reduce la resistencia al aire y aumenta el flujo con cada respiración.</p>" } },
+        { "type": "faq", "settings": { "question": "¿Pueden usarlas los deportistas?", "answer": "<p>Sí. NOZ está pensado para running, ciclismo, CrossFit, gimnasio, pádel, senderismo y cualquier disciplina. Al no contener sustancias, es apto para el deporte.</p>" } },
+        { "type": "faq", "settings": { "question": "¿Se pueden usar durante el sueño?", "answer": "<p>Totalmente. Muchas personas las usan de noche para respirar mejor, reducir la sequedad bucal y descansar de forma más profunda.</p>" } },
+        { "type": "faq", "settings": { "question": "¿Cuánto duran?", "answer": "<p>Cada tira es de un solo uso y mantiene su efecto durante horas. Cada caja incluye 30 tiras, suficiente para un mes de uso diario.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

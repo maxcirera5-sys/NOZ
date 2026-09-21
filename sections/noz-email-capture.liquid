@@ -1,0 +1,133 @@
+{%- comment -%}
+  NOZ · Section 08 — EMAIL CAPTURE
+  Supports Shopify native newsletter form or a custom endpoint (Klaviyo, etc.)
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+-%}
+
+<section class="noz noz-section noz-email" id="noz-email-{{ sid }}"
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};">
+  <div class="noz-email__bg" aria-hidden="true">
+    <span class="noz-glow noz-email__glow"></span>
+    <svg class="noz-flow" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+      <path d="M-50 120 C 300 40, 600 220, 900 120 S 1300 160, 1300 100"/>
+      <path d="M-50 260 C 300 180, 600 360, 900 260 S 1300 300, 1300 240"/>
+      <path d="M-50 400 C 300 320, 600 500, 900 400 S 1300 440, 1300 380"/>
+    </svg>
+  </div>
+
+  <div class="noz-wrap noz-email__inner">
+    {%- if section.settings.badge != blank -%}
+      <span class="noz-tag noz-reveal">{% render 'noz-icon', icon: 'spark', size: 14 %}{{ section.settings.badge }}</span>
+    {%- endif -%}
+    <h2 class="noz-h2 noz-email__title noz-reveal" data-delay="1">{{ section.settings.title }}</h2>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="noz-lead noz-email__sub noz-reveal" data-delay="2">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="noz-email__form-wrap noz-reveal" data-delay="3">
+      {%- if section.settings.use_shopify_form -%}
+        {%- form 'customer', class: 'noz-email__form', data-noz-form: '', data-native: 'true' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter, noz-launch">
+          <input type="hidden" name="contact[note]" value="NOZ launch waitlist">
+          <div class="noz-email__field">
+            <label class="noz-visually-hidden" for="noz-email-{{ sid }}-input">Correo electrónico</label>
+            <input id="noz-email-{{ sid }}-input" type="email" name="contact[email]"
+              placeholder="{{ section.settings.placeholder | default: 'tu@email.com' }}" required autocomplete="email">
+            <button type="submit" class="noz-btn">{{ section.settings.button_label | default: 'Unirme' }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p class="noz-form-msg is-ok" data-form-msg>{{ section.settings.success_message | default: '¡Listo! Estás en la lista de lanzamiento.' }}</p>
+          {%- elsif form.errors -%}
+            <p class="noz-form-msg is-error" data-form-msg>{{ form.errors | default_errors }}</p>
+          {%- else -%}
+            <p class="noz-form-msg" data-form-msg></p>
+          {%- endif -%}
+        {%- endform -%}
+      {%- else -%}
+        <form class="noz-email__form"
+          {% if section.settings.form_action != blank %}action="{{ section.settings.form_action }}" method="post" data-native="true"{% endif %}
+          data-noz-form>
+          <div class="noz-email__field">
+            <label class="noz-visually-hidden" for="noz-email-{{ sid }}-input">Correo electrónico</label>
+            <input id="noz-email-{{ sid }}-input" type="email" name="email"
+              placeholder="{{ section.settings.placeholder | default: 'tu@email.com' }}" required autocomplete="email">
+            <button type="submit" class="noz-btn">{{ section.settings.button_label | default: 'Unirme' }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</button>
+          </div>
+          <p class="noz-form-msg" data-form-msg></p>
+        </form>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.trust != blank -%}
+      <p class="noz-email__trust noz-reveal" data-delay="4">{% render 'noz-icon', icon: 'check', size: 14 %}{{ section.settings.trust }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-email { text-align: center; }
+  #shopify-section-{{ sid }} .noz-email__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  #shopify-section-{{ sid }} .noz-email__glow { width: 560px; height: 560px; background: var(--noz-accent);
+    opacity: .14; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  #shopify-section-{{ sid }} .noz-email__inner { position: relative; z-index: 2; max-width: 720px; margin-inline: auto;
+    display: flex; flex-direction: column; align-items: center; }
+  #shopify-section-{{ sid }} .noz-email .noz-tag { margin-bottom: 24px; }
+  #shopify-section-{{ sid }} .noz-email__title { max-width: 16ch; }
+  #shopify-section-{{ sid }} .noz-email__sub { margin: 22px auto 0; }
+
+  #shopify-section-{{ sid }} .noz-email__form-wrap { width: 100%; max-width: 520px; margin-top: 38px; }
+  #shopify-section-{{ sid }} .noz-email__field {
+    display: flex; gap: 10px; background: var(--noz-surface); border: 1px solid var(--noz-line-strong);
+    border-radius: 999px; padding: 8px; transition: border-color .3s, box-shadow .3s; }
+  #shopify-section-{{ sid }} .noz-email__field:focus-within { border-color: var(--noz-accent); box-shadow: 0 0 0 4px rgba(198,240,0,.14); }
+  #shopify-section-{{ sid }} .noz-email__field input {
+    flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--noz-white);
+    font-family: var(--noz-font-body); font-size: 1rem; padding: 0 16px; }
+  #shopify-section-{{ sid }} .noz-email__field input::placeholder { color: var(--noz-muted-2); }
+  #shopify-section-{{ sid }} .noz-email__field .noz-btn { flex: 0 0 auto; white-space: nowrap; }
+
+  #shopify-section-{{ sid }} .noz-form-msg { min-height: 1.2em; margin: 14px 0 0; font-size: .85rem; color: var(--noz-muted); transition: color .3s; }
+  #shopify-section-{{ sid }} .noz-form-msg.is-ok { color: var(--noz-accent); }
+  #shopify-section-{{ sid }} .noz-form-msg.is-error { color: #ff6b6b; }
+  #shopify-section-{{ sid }} .noz-email__form.is-done .noz-email__field { border-color: var(--noz-accent); }
+
+  #shopify-section-{{ sid }} .noz-email__trust { display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 22px; color: var(--noz-muted); font-size: .82rem; }
+  #shopify-section-{{ sid }} .noz-email__trust svg { color: var(--noz-accent); }
+
+  @media (max-width: 540px) {
+    #shopify-section-{{ sid }} .noz-email__field { flex-direction: column; border-radius: var(--noz-radius); padding: 12px; }
+    #shopify-section-{{ sid }} .noz-email__field input { padding: 12px 8px; text-align: center; }
+    #shopify-section-{{ sid }} .noz-email__field .noz-btn { width: 100%; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · Captura de email",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Insignia", "default": "Lista de espera · Q4 2026" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Sé de los primeros." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Únete al lanzamiento de NOZ y recibe acceso anticipado y una oferta de lanzamiento." },
+    { "type": "text", "id": "placeholder", "label": "Placeholder del email", "default": "tu@email.com" },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Unirme" },
+    { "type": "text", "id": "trust", "label": "Texto de confianza", "default": "Sin spam. Cancela cuando quieras." },
+    { "type": "header", "content": "Envío del formulario" },
+    { "type": "checkbox", "id": "use_shopify_form", "label": "Usar formulario de Shopify (recomendado)", "info": "Guarda el email como cliente con la etiqueta 'newsletter'.", "default": true },
+    { "type": "text", "id": "success_message", "label": "Mensaje de éxito", "default": "¡Listo! Estás en la lista de lanzamiento." },
+    { "type": "url", "id": "form_action", "label": "URL de envío externa (opcional)", "info": "Solo si NO usas el formulario de Shopify. Ej.: endpoint de Klaviyo/Mailchimp." },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "presets": [ { "name": "NOZ · Captura de email" } ]
+}
+{% endschema %}

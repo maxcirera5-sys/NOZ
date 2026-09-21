@@ -1,0 +1,136 @@
+{%- comment -%}
+  NOZ · Section 03 — HOW IT WORKS
+  Aplicar · Abrir · Respirar
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+-%}
+
+<section class="noz noz-section noz-hiw" id="noz-hiw-{{ sid }}"
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};">
+  <span id="{{ section.settings.anchor_id | default: 'noz-how' }}" class="noz-anchor" aria-hidden="true"></span>
+  <div class="noz-wrap">
+    <div class="noz-head noz-head--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="noz-eyebrow noz-reveal">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="noz-h2 noz-reveal" data-delay="1">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="noz-lead noz-reveal" data-delay="2">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+
+    <div class="noz-hiw__carousel" data-noz-carousel>
+      <div class="noz-hiw__track" data-carousel-track>
+        {%- for block in section.blocks -%}
+          <article class="noz-hiw__card noz-card noz-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <span class="noz-hiw__step">{{ forloop.index0 | plus: 1 | prepend: '0' | slice: -2, 2 }}</span>
+            <span class="noz-ico">{% render 'noz-icon', icon: block.settings.icon, size: 30 %}</span>
+            <h3 class="noz-h3 noz-hiw__card-title">{{ block.settings.title }}</h3>
+            <p class="noz-body">{{ block.settings.text }}</p>
+            {%- unless forloop.last -%}<span class="noz-hiw__connector" aria-hidden="true">{% render 'noz-icon', icon: 'arrow-right', size: 20 %}</span>{%- endunless -%}
+          </article>
+        {%- endfor -%}
+      </div>
+
+      <div class="noz-hiw__nav">
+        <button class="noz-carousel-btn" data-carousel-prev type="button" aria-label="Anterior">{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</button>
+        <div class="noz-dots" data-carousel-dots></div>
+        <button class="noz-carousel-btn" data-carousel-next type="button" aria-label="Siguiente">{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</button>
+      </div>
+    </div>
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="noz-hiw__cta noz-reveal">
+        <a class="noz-btn" href="{{ section.settings.cta_link | default: '#' }}">{{ section.settings.cta_label }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-anchor { position: absolute; top: -90px; }
+  #shopify-section-{{ sid }} .noz-hiw__track {
+    display: grid; grid-template-columns: repeat({{ section.blocks.size }}, minmax(0,1fr));
+    gap: clamp(16px, 2vw, 26px); }
+  #shopify-section-{{ sid }} .noz-hiw__card { position: relative; overflow: visible; }
+  #shopify-section-{{ sid }} .noz-hiw__step {
+    position: absolute; top: 22px; right: 26px; font-family: var(--noz-font-head); font-weight: 900;
+    font-size: 3.4rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--noz-line-strong); }
+  #shopify-section-{{ sid }} .noz-hiw__card-title { margin: 6px 0 12px; }
+  #shopify-section-{{ sid }} .noz-hiw__connector {
+    position: absolute; right: -22px; top: 50%; transform: translateY(-50%); color: var(--noz-accent);
+    z-index: 4; background: var(--noz-bg); border-radius: 50%; padding: 4px; }
+
+  #shopify-section-{{ sid }} .noz-hiw__nav { display: none; }
+  #shopify-section-{{ sid }} .noz-hiw__cta { margin-top: 44px; text-align: center; }
+
+  /* carousel controls shared look */
+  #shopify-section-{{ sid }} .noz-carousel-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--noz-line-strong);
+    background: var(--noz-surface); color: var(--noz-white); display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color .3s, color .3s; }
+  #shopify-section-{{ sid }} .noz-carousel-btn:hover { border-color: var(--noz-accent); color: var(--noz-accent); }
+  #shopify-section-{{ sid }} .noz-carousel-btn[data-carousel-prev] svg { transform: rotate(180deg); }
+  #shopify-section-{{ sid }} .noz-dots { display: flex; gap: 8px; align-items: center; }
+  #shopify-section-{{ sid }} .noz-dot { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0;
+    background: var(--noz-line-strong); cursor: pointer; transition: width .3s, background .3s; }
+  #shopify-section-{{ sid }} .noz-dot.is-active { width: 24px; border-radius: 999px; background: var(--noz-accent); }
+
+  @media (max-width: 749px) {
+    #shopify-section-{{ sid }} .noz-hiw__track {
+      grid-auto-flow: column; grid-auto-columns: 82%; grid-template-columns: none;
+      overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: 4px; margin: 0 calc(-1 * var(--noz-gutter)); padding-inline: var(--noz-gutter); }
+    #shopify-section-{{ sid }} .noz-hiw__track::-webkit-scrollbar { display: none; }
+    #shopify-section-{{ sid }} .noz-hiw__card { scroll-snap-align: center; }
+    #shopify-section-{{ sid }} .noz-hiw__connector { display: none; }
+    #shopify-section-{{ sid }} .noz-hiw__nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · Cómo funciona",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Cómo funciona" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Tres pasos. Aire al instante." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Sin fármacos, sin complicaciones. Solo mejor respiración desde la primera vez." },
+    { "type": "text", "id": "cta_label", "label": "Botón (opcional)", "default": "" },
+    { "type": "url", "id": "cta_link", "label": "Enlace del botón" },
+    { "type": "text", "id": "anchor_id", "label": "ID de ancla", "info": "Para enlaces internos (ej. el botón «Cómo funciona» del Hero apunta a #noz-how).", "default": "noz-how" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "options": [
+          { "value": "strips", "label": "Tira" },
+          { "value": "nose", "label": "Nariz" },
+          { "value": "airflow", "label": "Flujo de aire" },
+          { "value": "lungs", "label": "Pulmones" },
+          { "value": "check", "label": "Check" } ], "default": "strips" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Aplicar" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Coloca la tira NOZ sobre el puente de la nariz y presiona los extremos." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "NOZ · Cómo funciona",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "strips", "title": "Aplicar", "text": "Coloca la tira NOZ sobre el puente de la nariz y presiona suavemente los extremos." } },
+        { "type": "step", "settings": { "icon": "nose", "title": "Abrir", "text": "La tira eleva las paredes nasales y abre las vías para dejar pasar más aire." } },
+        { "type": "step", "settings": { "icon": "airflow", "title": "Respirar", "text": "Disfruta de un flujo de aire optimizado al instante, en entrenamiento o descanso." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

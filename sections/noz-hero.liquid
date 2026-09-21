@@ -1,0 +1,243 @@
+{%- comment -%}
+  NOZ · Section 01 — HERO
+  RESPIRA MEJOR. RINDE MÁS.
+{%- endcomment -%}
+{% render 'noz-head' %}
+
+{%- liquid
+  assign sid = section.id
+  assign acc = section.settings.accent_color
+  assign bg = section.settings.bg_color
+-%}
+
+<section
+  class="noz noz-section noz-hero noz-hero--{{ section.settings.height }}"
+  id="noz-hero-{{ sid }}"
+  data-noz-parallax-scope
+  style="--noz-accent: {{ acc }}; --noz-bg: {{ bg }};"
+>
+  <!-- animated airflow field -->
+  <div class="noz-hero__bg" aria-hidden="true">
+    <span class="noz-glow noz-hero__glow"></span>
+    <svg class="noz-flow noz-hero__flow" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+      <path d="M-50 120 C 250 60, 500 200, 750 120 S 1250 160, 1300 100"/>
+      <path d="M-50 220 C 260 150, 520 300, 780 210 S 1250 250, 1300 190"/>
+      <path d="M-50 330 C 250 250, 540 420, 800 320 S 1250 360, 1300 300"/>
+      <path d="M-50 440 C 260 360, 520 520, 780 430 S 1250 470, 1300 410"/>
+      <path d="M-50 560 C 250 470, 540 640, 800 540 S 1250 580, 1300 520"/>
+    </svg>
+    <div class="noz-particles" data-noz-parallax="14">
+      {%- for i in (1..14) -%}<span></span>{%- endfor -%}
+    </div>
+    <div class="noz-hero__ghost" data-noz-parallax="-8">NOZ</div>
+    {%- if section.settings.image != blank -%}
+      <div class="noz-hero__image" data-noz-parallax="10">
+        {{ section.settings.image | image_url: width: 1400 | image_tag:
+          loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 749px) 90vw, 45vw',
+          widths: '400,600,800,1000,1200,1400', alt: section.settings.image.alt | default: 'NOZ' }}
+        <span class="noz-hero__image-fade"></span>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="noz-wrap noz-hero__inner">
+    {%- if section.settings.badge != blank -%}
+      <span class="noz-tag noz-reveal">{% render 'noz-icon', icon: 'spark', size: 14 %}{{ section.settings.badge }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="noz-eyebrow noz-reveal" data-delay="1">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    <h1 class="noz-h1 noz-hero__title noz-reveal" data-delay="1">
+      <span>{{ section.settings.title_line1 }}</span>
+      <span class="noz-accent-text">{{ section.settings.title_line2 }}</span>
+    </h1>
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="noz-lead noz-hero__sub noz-reveal" data-delay="2">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <div class="noz-hero__cta noz-reveal" data-delay="3">
+      {%- if section.settings.cta1_label != blank -%}
+        <a class="noz-btn" href="{{ section.settings.cta1_link | default: '#' }}">
+          {{ section.settings.cta1_label }}{% render 'noz-icon', icon: 'arrow-right', size: 18 %}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.cta2_label != blank -%}
+        <a class="noz-btn noz-btn--ghost" href="{{ section.settings.cta2_link | default: '#' }}">
+          {% render 'noz-icon', icon: 'play', size: 14 %}{{ section.settings.cta2_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="noz-hero__features noz-reveal" data-delay="4">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <span class="noz-hero__feat-ico">{% render 'noz-icon', icon: block.settings.icon, size: 22 %}</span>
+            <span>{{ block.settings.label }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.scroll_hint -%}
+    <a href="#" class="noz-hero__scroll" aria-label="Desplázate">
+      {% render 'noz-icon', icon: 'arrow-down', size: 20 %}
+    </a>
+  {%- endif -%}
+</section>
+
+{% style %}
+  #shopify-section-{{ sid }} .noz-hero { display: flex; align-items: center; }
+  #shopify-section-{{ sid }} .noz-hero--full { min-height: 100svh; }
+  #shopify-section-{{ sid }} .noz-hero--large { min-height: 82svh; }
+  #shopify-section-{{ sid }} .noz-hero--medium { min-height: 62svh; }
+
+  #shopify-section-{{ sid }} .noz-hero__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden;
+    background:
+      radial-gradient(120% 90% at 80% -10%, rgba(198,240,0,.10), transparent 55%),
+      linear-gradient(180deg, #0a0a0a, var(--noz-bg) 60%); }
+  #shopify-section-{{ sid }} .noz-hero__glow { width: 620px; height: 620px;
+    background: var(--noz-accent); opacity: .16; top: -220px; right: -160px; }
+
+  #shopify-section-{{ sid }} .noz-hero__ghost {
+    position: absolute; right: -2%; bottom: -6%; font-family: var(--noz-font-head);
+    font-weight: 900; font-size: clamp(14rem, 40vw, 44rem); line-height: .7;
+    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.05);
+    letter-spacing: -.03em; user-select: none; z-index: 0; }
+
+  #shopify-section-{{ sid }} .noz-hero__image {
+    position: absolute; right: -2%; bottom: 0; width: min(52vw, 640px); z-index: 1; }
+  #shopify-section-{{ sid }} .noz-hero__image img {
+    width: 100%; height: auto; display: block;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%);
+            mask-image: linear-gradient(90deg, transparent, #000 22%);
+    filter: grayscale(.15) contrast(1.05); }
+  #shopify-section-{{ sid }} .noz-hero__image-fade {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--noz-bg), transparent 40%),
+                linear-gradient(0deg, var(--noz-bg), transparent 30%); }
+
+  #shopify-section-{{ sid }} .noz-hero__inner { z-index: 3; padding-top: clamp(90px, 12vh, 150px);
+    padding-bottom: clamp(40px, 8vh, 90px); }
+  #shopify-section-{{ sid }} .noz-hero .noz-tag { margin-bottom: 26px; }
+  #shopify-section-{{ sid }} .noz-hero__title { max-width: 16ch; }
+  #shopify-section-{{ sid }} .noz-hero__title span { display: block; }
+  #shopify-section-{{ sid }} .noz-hero__sub { margin-top: 26px; }
+
+  #shopify-section-{{ sid }} .noz-hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+
+  #shopify-section-{{ sid }} .noz-hero__features {
+    list-style: none; margin: clamp(40px,6vh,64px) 0 0; padding: 26px 0 0;
+    border-top: 1px solid var(--noz-line);
+    display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; max-width: 760px; }
+  #shopify-section-{{ sid }} .noz-hero__features li {
+    display: flex; align-items: center; gap: 12px; font-size: .82rem; color: var(--noz-text);
+    font-weight: 500; letter-spacing: .01em; }
+  #shopify-section-{{ sid }} .noz-hero__feat-ico { color: var(--noz-accent); display: inline-flex; flex: 0 0 auto; }
+
+  #shopify-section-{{ sid }} .noz-hero__scroll {
+    position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 3;
+    color: var(--noz-muted); animation: noz-bob 2.2s ease-in-out infinite; }
+  @keyframes noz-bob { 0%,100%{ transform: translate(-50%,0);} 50%{ transform: translate(-50%,8px);} }
+
+  /* floating air particles */
+  #shopify-section-{{ sid }} .noz-particles { position: absolute; inset: 0; z-index: 1; }
+  #shopify-section-{{ sid }} .noz-particles span {
+    position: absolute; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--noz-accent); opacity: .0; filter: blur(.3px);
+    animation: noz-float 12s linear infinite; }
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(1){left:8%;bottom:-10px;animation-delay:0s;animation-duration:11s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(2){left:18%;bottom:-10px;animation-delay:2s;animation-duration:14s;background:#fff}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(3){left:27%;bottom:-10px;animation-delay:4s;animation-duration:10s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(4){left:36%;bottom:-10px;animation-delay:1s;animation-duration:16s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(5){left:45%;bottom:-10px;animation-delay:5s;animation-duration:12s;background:#fff}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(6){left:54%;bottom:-10px;animation-delay:3s;animation-duration:15s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(7){left:63%;bottom:-10px;animation-delay:6s;animation-duration:11s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(8){left:72%;bottom:-10px;animation-delay:2.5s;animation-duration:13s;background:#fff}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(9){left:81%;bottom:-10px;animation-delay:4.5s;animation-duration:17s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(10){left:90%;bottom:-10px;animation-delay:1.5s;animation-duration:12s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(11){left:13%;bottom:-10px;animation-delay:7s;animation-duration:14s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(12){left:40%;bottom:-10px;animation-delay:8s;animation-duration:16s;background:#fff}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(13){left:68%;bottom:-10px;animation-delay:6.5s;animation-duration:13s}
+  #shopify-section-{{ sid }} .noz-particles span:nth-child(14){left:95%;bottom:-10px;animation-delay:9s;animation-duration:15s}
+  @keyframes noz-float {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    12% { opacity: .8; }
+    88% { opacity: .5; }
+    100% { transform: translateY(-105vh) translateX(40px); opacity: 0; }
+  }
+
+  @media (max-width: 749px) {
+    #shopify-section-{{ sid }} .noz-hero__features { grid-template-columns: repeat(2, 1fr); }
+    #shopify-section-{{ sid }} .noz-hero__image { width: 92vw; right: -20%; opacity: .55; }
+    #shopify-section-{{ sid }} .noz-hero__ghost { font-size: 60vw; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ sid }} .noz-particles span,
+    #shopify-section-{{ sid }} .noz-hero__scroll { animation: none; }
+    #shopify-section-{{ sid }} .noz-particles span { opacity: .4; }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "NOZ · Hero",
+  "tag": "section",
+  "class": "noz-section-wrapper",
+  "settings": [
+    { "type": "header", "content": "Contenido" },
+    { "type": "text", "id": "badge", "label": "Insignia (badge)", "default": "Lanzamiento Q4 2026" },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Tiras nasales de alto rendimiento" },
+    { "type": "text", "id": "title_line1", "label": "Título — línea 1", "default": "Respira mejor." },
+    { "type": "text", "id": "title_line2", "label": "Título — línea 2 (acento)", "default": "Rinde más." },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Optimiza tu flujo de aire. Maximiza tu rendimiento." },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "cta1_label", "label": "Botón principal", "default": "Descubrir NOZ" },
+    { "type": "url", "id": "cta1_link", "label": "Enlace principal" },
+    { "type": "text", "id": "cta2_label", "label": "Botón secundario", "default": "Cómo funciona" },
+    { "type": "url", "id": "cta2_link", "label": "Enlace secundario" },
+    { "type": "header", "content": "Diseño" },
+    { "type": "select", "id": "height", "label": "Altura", "options": [
+      { "value": "full", "label": "Pantalla completa" },
+      { "value": "large", "label": "Grande" },
+      { "value": "medium", "label": "Media" } ], "default": "full" },
+    { "type": "image_picker", "id": "image", "label": "Imagen (opcional)", "info": "Atleta / producto. Si se deja vacío se muestra la animación de aire." },
+    { "type": "checkbox", "id": "scroll_hint", "label": "Mostrar indicador de scroll", "default": true },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "accent_color", "label": "Color de acento", "default": "#C6F000" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#080808" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Ventaja",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icono", "options": [
+          { "value": "airflow", "label": "Flujo de aire" },
+          { "value": "performance", "label": "Rendimiento" },
+          { "value": "sleep", "label": "Sueño" },
+          { "value": "drug-free", "label": "Sin fármacos" },
+          { "value": "lungs", "label": "Pulmones" },
+          { "value": "oxygen", "label": "Oxígeno" } ], "default": "airflow" },
+        { "type": "text", "id": "label", "label": "Texto", "default": "Más aire" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "NOZ · Hero",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "airflow", "label": "Más aire" } },
+        { "type": "feature", "settings": { "icon": "performance", "label": "Más rendimiento" } },
+        { "type": "feature", "settings": { "icon": "sleep", "label": "Mejor descanso" } },
+        { "type": "feature", "settings": { "icon": "drug-free", "label": "Sin fármacos" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
