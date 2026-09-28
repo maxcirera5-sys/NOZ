@@ -1,0 +1,700 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "hero_eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>NOZ Sport · Tiras nasales</p>",
+            "width": "100%",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "0.875rem",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "text_color": "#c6ff00"
+          },
+          "blocks": {}
+        },
+        "text_YLPk4p": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>Respira más.</h1>",
+            "width": "100%",
+            "type_preset": "h1",
+            "wrap": "balance",
+            "text_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "text_W8pxfJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Rinde sin límites.</p>",
+            "width": "100%",
+            "type_preset": "h1",
+            "wrap": "balance",
+            "text_color": "#c6ff00"
+          },
+          "blocks": {}
+        },
+        "text_qVpLxt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tiras nasales que abren suavemente tus fosas nasales para que entre más aire en cada respiración. Diseñadas para cardio, fuerza y resistencia.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "loose",
+            "text_color": "#e6e6e6",
+            "padding-block-end": 8
+          },
+          "blocks": {}
+        },
+        "hero_ctas": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "gap": 12,
+            "width": "fit-content",
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "button_H9gpTf": {
+              "type": "button",
+              "settings": {
+                "label": "Comprar ahora",
+                "link": "shopify://products/noz-sport-tiras-nasales",
+                "style_class": "button",
+                "width": "fit-content",
+                "width_mobile": "custom",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
+            "hero_btn_secondary": {
+              "type": "button",
+              "settings": {
+                "label": "Ver colección",
+                "link": "shopify://collections/all",
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "width_mobile": "custom",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_H9gpTf",
+            "hero_btn_secondary"
+          ]
+        },
+        "hero_trust": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✓ Envío 24/48h &nbsp;&nbsp; ✓ Envío gratis desde 30€ &nbsp;&nbsp; ✓ 30 tiras por caja</p>",
+            "width": "100%",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "text_color": "#b3b3b3",
+            "padding-block-start": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "hero_eyebrow",
+        "text_YLPk4p",
+        "text_W8pxfJ",
+        "text_qVpLxt",
+        "hero_ctas",
+        "hero_trust"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "video",
+        "image_1": "shopify://shop_images/ChatGPT_Image_8_jul_2026_17_13_02.png",
+        "media_type_2": "video",
+        "video_2": "shopify://files/videos/kling_20260709_VIDEO_shot_1_2s__4754_0.mp4",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 20,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": true,
+        "overlay_color": "#000000d9",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 88
+      }
+    },
+    "marquee_top": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-marquee\" role=\"presentation\"><div class=\"noz-marquee__track\"><span>Respira más</span><i aria-hidden=\"true\">✦</i><span>Rinde más</span><i aria-hidden=\"true\">✦</i><span>NOZ Sport</span><i aria-hidden=\"true\">✦</i><span>Cardio</span><i aria-hidden=\"true\">✦</i><span>Fuerza</span><i aria-hidden=\"true\">✦</i><span>Resistencia</span><i aria-hidden=\"true\">✦</i><span>Respira más</span><i aria-hidden=\"true\">✦</i><span>Rinde más</span><i aria-hidden=\"true\">✦</i><span>NOZ Sport</span><i aria-hidden=\"true\">✦</i><span>Cardio</span><i aria-hidden=\"true\">✦</i><span>Fuerza</span><i aria-hidden=\"true\">✦</i><span>Resistencia</span><i aria-hidden=\"true\">✦</i></div></div>",
+        "section_width": "full-width"
+      }
+    },
+    "manifesto": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-manifesto\"><p class=\"noz-manifesto__eyebrow\">Respira para rendir</p><p class=\"noz-manifesto__text\"><span class=\"noz-mword\">Cada</span> <span class=\"noz-mword\">respiración</span> <span class=\"noz-mword noz-mword--lime\">cuenta.</span> <span class=\"noz-mword\">Cuando</span> <span class=\"noz-mword\">el</span> <span class=\"noz-mword\">aire</span> <span class=\"noz-mword\">fluye,</span> <span class=\"noz-mword\">tu</span> <span class=\"noz-mword\">cuerpo</span> <span class=\"noz-mword noz-mword--lime\">rinde</span> <span class=\"noz-mword noz-mword--lime\">más.</span> <span class=\"noz-mword\">NOZ</span> <span class=\"noz-mword\">abre</span> <span class=\"noz-mword\">el</span> <span class=\"noz-mword\">camino.</span> <span class=\"noz-mword\">Tú</span> <span class=\"noz-mword\">pones</span> <span class=\"noz-mword\">el</span> <span class=\"noz-mword noz-mword--lime\">ritmo.</span></p></div>"
+      }
+    },
+    "pack": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-pack\"><div class=\"noz-pack__stage\"><div class=\"noz-pack__bgword\" aria-hidden=\"true\">Respira · Rinde · Respira</div><div class=\"noz-pack__ring\" aria-hidden=\"true\"></div><div class=\"noz-pack__copy\"><p class=\"noz-eyebrow\">El sobre</p><h2>30 tiras.<br><span>Cero excusas.</span></h2><p>Cada sobre NOZ Sport trae 30 tiras nasales listas para tu entreno: despegar, aplicar y respirar.</p><a class=\"noz-pack__btn\" href=\"/products/noz-sport-tiras-nasales\">Lo quiero <span aria-hidden=\"true\">→</span></a></div><div class=\"noz-pack__scene\"><img class=\"noz-pack__strip\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-tira.webp?v=1790624093&width=900\" alt=\"\" width=\"1600\" height=\"1288\" loading=\"lazy\"><div class=\"noz-pack__tilt\"><div class=\"noz-pack__card\"><img class=\"noz-pack__face\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-sobre-frente.webp?v=1790624092&width=800\" alt=\"Sobre NOZ Sport, tiras nasales, 30 unidades\" width=\"1182\" height=\"1772\" loading=\"lazy\"><img class=\"noz-pack__face noz-pack__face--back\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-sobre-dorso.webp?v=1790624093&width=800\" alt=\"Dorso del sobre NOZ: cómo funciona, ingredientes y precauciones\" width=\"1182\" height=\"1772\" loading=\"lazy\"></div></div></div><ul class=\"noz-pack__callouts\"><li>Flujo de aire optimizado</li><li>Máximo rendimiento</li><li>Mejor oxigenación</li><li>30 tiras por sobre</li></ul></div></div>",
+        "section_width": "full-width"
+      }
+    },
+    "benefits": {
+      "type": "section",
+      "blocks": {
+        "b_head": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "gap": 12,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "b_eyebrow": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Beneficios</p>",
+                "width": "100%",
+                "type_preset": "custom",
+                "font": "var(--font-accent--family)",
+                "font_size": "0.875rem",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "text_color": "#c6ff00"
+              },
+              "blocks": {}
+            },
+            "b_title": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Más aire. Más rendimiento.</h2>",
+                "width": "100%",
+                "type_preset": "h2",
+                "wrap": "balance",
+                "text_color": "#ffffff"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "b_eyebrow",
+            "b_title"
+          ]
+        },
+        "b_grid": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "gap": 16,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "b_c1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 14,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fill",
+                "background_color": "#121212",
+                "border": "solid",
+                "border_color": "#262626",
+                "border_radius": 0,
+                "padding-block-start": 36,
+                "padding-block-end": 36,
+                "padding-inline-start": 32,
+                "padding-inline-end": 32
+              },
+              "blocks": {
+                "b1_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "leaf",
+                    "width": 40,
+                    "icon_color": "#c6ff00"
+                  },
+                  "blocks": {}
+                },
+                "b1_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Flujo de aire optimizado</h3>",
+                    "width": "100%",
+                    "type_preset": "h3",
+                    "text_color": "#ffffff"
+                  },
+                  "blocks": {}
+                },
+                "b1_body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Elevan suavemente los conductos nasales para que el aire entre sin esfuerzo.</p>",
+                    "width": "100%",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "loose",
+                    "text_color": "#b3b3b3"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b1_icon",
+                "b1_title",
+                "b1_body"
+              ]
+            },
+            "b_c2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 14,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fill",
+                "background_color": "#121212",
+                "border": "solid",
+                "border_color": "#262626",
+                "border_radius": 0,
+                "padding-block-start": 36,
+                "padding-block-end": 36,
+                "padding-inline-start": 32,
+                "padding-inline-end": 32
+              },
+              "blocks": {
+                "b2_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "lightning_bolt",
+                    "width": 40,
+                    "icon_color": "#c6ff00"
+                  },
+                  "blocks": {}
+                },
+                "b2_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Máximo rendimiento</h3>",
+                    "width": "100%",
+                    "type_preset": "h3",
+                    "text_color": "#ffffff"
+                  },
+                  "blocks": {}
+                },
+                "b2_body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Respira mejor en cada serie, cada kilómetro y cada sprint.</p>",
+                    "width": "100%",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "loose",
+                    "text_color": "#b3b3b3"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b2_icon",
+                "b2_title",
+                "b2_body"
+              ]
+            },
+            "b_c3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 14,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fill",
+                "background_color": "#121212",
+                "border": "solid",
+                "border_color": "#262626",
+                "border_radius": 0,
+                "padding-block-start": 36,
+                "padding-block-end": 36,
+                "padding-inline-start": 32,
+                "padding-inline-end": 32
+              },
+              "blocks": {
+                "b3_icon": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "heart",
+                    "width": 40,
+                    "icon_color": "#c6ff00"
+                  },
+                  "blocks": {}
+                },
+                "b3_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Mejor oxigenación</h3>",
+                    "width": "100%",
+                    "type_preset": "h3",
+                    "text_color": "#ffffff"
+                  },
+                  "blocks": {}
+                },
+                "b3_body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Más oxígeno para tus músculos y una recuperación más rápida.</p>",
+                    "width": "100%",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "loose",
+                    "text_color": "#b3b3b3"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b3_icon",
+                "b3_title",
+                "b3_body"
+              ]
+            }
+          },
+          "block_order": [
+            "b_c1",
+            "b_c2",
+            "b_c3"
+          ]
+        }
+      },
+      "block_order": [
+        "b_head",
+        "b_grid"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "gap": 48,
+        "section_width": "page-width",
+        "background_color": "#080808",
+        "padding-block-start": 80,
+        "padding-block-end": 24
+      }
+    },
+    "stats": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-stats\"><div class=\"noz-stats__item\"><strong data-count=\"30\">30</strong><span>Tiras por caja</span></div><div class=\"noz-stats__item\"><strong>24/48h</strong><span>Entrega</span></div><div class=\"noz-stats__item\"><strong>+<span data-count=\"30\">30</span>€</strong><span>Envío gratis</span></div><div class=\"noz-stats__item\"><strong>Grado médico</strong><span>Adhesivo</span></div></div>"
+      }
+    },
+    "featured_product": {
+      "type": "featured-product",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {},
+          "blocks": {}
+        },
+        "featured-product": {
+          "type": "_featured-product",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "featured-product-title": {
+              "type": "product-title",
+              "static": true,
+              "settings": {
+                "type_preset": "h3",
+                "width": "100%"
+              },
+              "blocks": {}
+            },
+            "featured-product-price": {
+              "type": "_featured-product-price",
+              "static": true,
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": "h3"
+              },
+              "blocks": {}
+            },
+            "featured-product-gallery": {
+              "type": "_featured-product-gallery",
+              "static": true,
+              "settings": {
+                "image_ratio": "square",
+                "constrain_to_viewport": "contain"
+              },
+              "blocks": {}
+            },
+            "featured-product-swatches": {
+              "type": "swatches",
+              "static": true,
+              "settings": {
+                "hide_padding": true
+              },
+              "blocks": {}
+            }
+          }
+        }
+      },
+      "settings": {
+        "product": "noz-sport-tiras-nasales",
+        "layout": "media-left",
+        "background_color": "#111111",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "how_it_works": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-steps\"><div class=\"noz-steps__head page-width\"><p class=\"noz-eyebrow\">Cómo funciona</p><h2 class=\"noz-steps__title\">Tres pasos. Cero excusas.</h2></div><div class=\"noz-steps__track\"><article class=\"noz-step\"><span class=\"noz-step__num\" aria-hidden=\"true\">01</span><h3><span class=\"visually-hidden\">Paso 1: </span>Despegar</h3><p>Retira la tira del papel protector.</p></article><article class=\"noz-step\"><span class=\"noz-step__num\" aria-hidden=\"true\">02</span><h3><span class=\"visually-hidden\">Paso 2: </span>Aplicar</h3><p>Colócala sobre la nariz y presiona los extremos hacia abajo.</p></article><article class=\"noz-step\"><span class=\"noz-step__num\" aria-hidden=\"true\">03</span><h3><span class=\"visually-hidden\">Paso 3: </span>Respirar</h3><p>Disfruta al instante de un mejor flujo de aire.</p></article><article class=\"noz-step noz-step--cta\"><h3>Listo para rendir</h3><a href=\"/products/noz-sport-tiras-nasales\">Comprar NOZ Sport <span aria-hidden=\"true\">→</span></a></article></div></div>",
+        "section_width": "full-width"
+      }
+    },
+    "ideal_for": {
+      "type": "section",
+      "blocks": {
+        "i_eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ideal para</p>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "0.875rem",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "text_color": "#c6ff00"
+          },
+          "blocks": {}
+        },
+        "i_row": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-start",
+            "gap": 24,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "i_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit"
+              },
+              "blocks": {
+                "i_1i": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "heart",
+                    "width": 48,
+                    "icon_color": "#c6ff00"
+                  },
+                  "blocks": {}
+                },
+                "i_1t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Cardio</p>",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1.5rem",
+                    "case": "uppercase",
+                    "text_color": "#ffffff"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "i_1i",
+                "i_1t"
+              ]
+            },
+            "i_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit"
+              },
+              "blocks": {
+                "i_2i": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "fire",
+                    "width": 48,
+                    "icon_color": "#c6ff00"
+                  },
+                  "blocks": {}
+                },
+                "i_2t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Fuerza</p>",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1.5rem",
+                    "case": "uppercase",
+                    "text_color": "#ffffff"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "i_2i",
+                "i_2t"
+              ]
+            },
+            "i_3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit"
+              },
+              "blocks": {
+                "i_3i": {
+                  "type": "icon",
+                  "settings": {
+                    "icon": "stopwatch",
+                    "width": 48,
+                    "icon_color": "#c6ff00"
+                  },
+                  "blocks": {}
+                },
+                "i_3t": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Resistencia</p>",
+                    "width": "100%",
+                    "alignment": "center",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1.5rem",
+                    "case": "uppercase",
+                    "text_color": "#ffffff"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "i_3i",
+                "i_3t"
+              ]
+            }
+          },
+          "block_order": [
+            "i_1",
+            "i_2",
+            "i_3"
+          ]
+        }
+      },
+      "block_order": [
+        "i_eyebrow",
+        "i_row"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 40,
+        "section_width": "page-width",
+        "background_color": "#111111",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "cta_band": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-cta\"><div class=\"noz-cta__inner page-width\"><p class=\"noz-cta__eyebrow\">Tu próximo entreno empieza aquí</p><h2 class=\"noz-cta__title\">Respira.<br>Rinde.<br><em>Repite.</em></h2><a class=\"noz-cta__button\" href=\"/products/noz-sport-tiras-nasales\">Comprar NOZ Sport<span aria-hidden=\"true\">→</span></a></div></div>",
+        "section_width": "full-width"
+      }
+    }
+  },
+  "order": [
+    "hero_jVaWmY",
+    "marquee_top",
+    "manifesto",
+    "pack",
+    "benefits",
+    "stats",
+    "featured_product",
+    "how_it_works",
+    "ideal_for",
+    "cta_band"
+  ]
+}
