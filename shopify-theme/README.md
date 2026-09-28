@@ -14,13 +14,15 @@ Copia de los archivos modificados del tema **"NOZ – Rediseño (borrador)"** (t
 | `config/settings_data.json` | Tipografías Titillium, botones y campos de formulario legibles sobre fondo negro. |
 | `sections/header-group.json` | Barra de anuncios lima, header transparente sobre el vídeo. |
 | `sections/footer-group.json` | Pie en español, newsletter, Instagram @noz.balance. |
-| `media/` | Frente y dorso del sobre (renderizados de `Packaging.pdf`), foto de la tira y `icons/` con los 10 iconos del packaging recortados del PDF con fondo transparente. Todos están en *Contenido → Archivos* de Shopify; la portada los carga con `file_url`. |
+| `media/` | Frente y dorso del sobre (renderizados de `Packaging.pdf`), foto de la tira y `icons/` con los 10 iconos del packaging recortados del PDF con fondo transparente. Todos están en *Contenido → Archivos* de Shopify; la portada los carga con su URL del CDN. |
 
 ## Accesibilidad y rendimiento
 
 - Sin JavaScript o si GSAP no carga, todo el contenido se ve completo (sin movimiento).
 - Con `prefers-reduced-motion: reduce` se desactivan las animaciones.
-- Nada se fija al hacer scroll: cada bloque tiene como mucho una animación de entrada.
+- El hero se queda fijo (`position: sticky`, sin JS) y el resto de la página sube por encima; al bajar, el vídeo se acerca y se oscurece para que el paso sea continuo. Ninguna otra sección se fija.
+- Estilos acotados a `.noz-*`, al hero y a los botones de compra: no alteran carrito, filtros ni otras plantillas.
+- Imágenes servidas con URL absoluta del CDN de Shopify (no dependen de `file_url`).
 - El sobre se puede girar con un botón accesible (`aria-pressed`).
 
 ## Cómo aplicarlo

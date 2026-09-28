@@ -65,14 +65,23 @@
           delay: 0.1 + i * 0.2,
         });
       });
+      // The hero is sticky (CSS); as the next section slides over it, push the video in,
+      // darken it and fade the copy so the hand-off feels continuous instead of a hard cut.
       const media = hero.querySelector('.hero__media-grid');
-      if (media) {
-        gsap.to(media, {
-          yPercent: 8,
-          ease: 'none',
-          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
-        });
-      }
+      const content = hero.querySelector('.hero__content-wrapper');
+      const veil = document.createElement('div');
+      veil.className = 'noz-hero-veil';
+      veil.setAttribute('aria-hidden', 'true');
+      // Sits between the video and the copy inside Horizon's .hero__container.
+      if (media) media.after(veil);
+      else hero.appendChild(veil);
+      const exit = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
+      });
+      if (media) exit.to(media, { scale: 1.12 }, 0);
+      if (content) exit.to(content, { opacity: 0, y: -40 }, 0);
+      exit.to(veil, { opacity: 0.75 }, 0);
     }
 
     /* Marquee skews with scroll velocity */
