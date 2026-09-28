@@ -181,66 +181,6 @@
         "section_width": "full-width"
       }
     },
-    "featured_product": {
-      "type": "featured-product",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {},
-          "blocks": {}
-        },
-        "featured-product": {
-          "type": "_featured-product",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "featured-product-title": {
-              "type": "product-title",
-              "static": true,
-              "settings": {
-                "type_preset": "h3",
-                "width": "100%"
-              },
-              "blocks": {}
-            },
-            "featured-product-price": {
-              "type": "_featured-product-price",
-              "static": true,
-              "settings": {
-                "show_sale_price_first": true,
-                "type_preset": "h3"
-              },
-              "blocks": {}
-            },
-            "featured-product-gallery": {
-              "type": "_featured-product-gallery",
-              "static": true,
-              "settings": {
-                "image_ratio": "square",
-                "constrain_to_viewport": "contain"
-              },
-              "blocks": {}
-            },
-            "featured-product-swatches": {
-              "type": "swatches",
-              "static": true,
-              "settings": {
-                "hide_padding": true
-              },
-              "blocks": {}
-            }
-          }
-        }
-      },
-      "settings": {
-        "product": "noz-sport-tiras-nasales",
-        "layout": "media-left",
-        "background_color": "#111111",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "cta_band": {
       "type": "custom-liquid",
       "settings": {
@@ -255,7 +195,6 @@
     "pack",
     "how_it_works",
     "ideal_for",
-    "featured_product",
     "cta_band"
   ]
 }
