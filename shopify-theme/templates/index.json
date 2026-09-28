@@ -1,0 +1,200 @@
+{
+  "sections": {
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "hero_eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>NOZ Sport · Tiras nasales</p>",
+            "width": "100%",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "0.875rem",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "text_color": "#c6ff00"
+          },
+          "blocks": {}
+        },
+        "text_YLPk4p": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>Respira más.</h1>",
+            "width": "100%",
+            "type_preset": "h1",
+            "wrap": "balance",
+            "text_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "text_W8pxfJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Rinde sin límites.</p>",
+            "width": "100%",
+            "type_preset": "h1",
+            "wrap": "balance",
+            "text_color": "#c6ff00"
+          },
+          "blocks": {}
+        },
+        "text_qVpLxt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tiras nasales que abren suavemente tus fosas nasales para que entre más aire en cada respiración. Diseñadas para cardio, fuerza y resistencia.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.125rem",
+            "line_height": "loose",
+            "text_color": "#e6e6e6",
+            "padding-block-end": 8
+          },
+          "blocks": {}
+        },
+        "hero_ctas": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "gap": 12,
+            "width": "fit-content",
+            "width_mobile": "fill",
+            "height": "fit"
+          },
+          "blocks": {
+            "button_H9gpTf": {
+              "type": "button",
+              "settings": {
+                "label": "Comprar ahora",
+                "link": "shopify://products/noz-sport-tiras-nasales",
+                "style_class": "button",
+                "width": "fit-content",
+                "width_mobile": "custom",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            },
+            "hero_btn_secondary": {
+              "type": "button",
+              "settings": {
+                "label": "Ver colección",
+                "link": "shopify://collections/all",
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "width_mobile": "custom",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_H9gpTf",
+            "hero_btn_secondary"
+          ]
+        },
+        "hero_trust": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✓ Envío 24/48h &nbsp;&nbsp; ✓ Envío gratis desde 30€ &nbsp;&nbsp; ✓ 30 tiras por caja</p>",
+            "width": "100%",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "text_color": "#b3b3b3",
+            "padding-block-start": 8
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "hero_eyebrow",
+        "text_YLPk4p",
+        "text_W8pxfJ",
+        "text_qVpLxt",
+        "hero_ctas",
+        "hero_trust"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "video",
+        "image_1": "shopify://shop_images/ChatGPT_Image_8_jul_2026_17_13_02.png",
+        "media_type_2": "video",
+        "video_2": "shopify://files/videos/kling_20260709_VIDEO_shot_1_2s__4754_0.mp4",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 20,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": true,
+        "overlay_color": "#000000d9",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 88
+      }
+    },
+    "marquee_top": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-marquee-wrap\"><div class=\"noz-marquee\" role=\"presentation\"><div class=\"noz-marquee__track\"><span>Respira más</span><i aria-hidden=\"true\">✦</i><span>Rinde más</span><i aria-hidden=\"true\">✦</i><span>NOZ Sport</span><i aria-hidden=\"true\">✦</i><span>Cardio</span><i aria-hidden=\"true\">✦</i><span>Fuerza</span><i aria-hidden=\"true\">✦</i><span>Resistencia</span><i aria-hidden=\"true\">✦</i><span>Respira más</span><i aria-hidden=\"true\">✦</i><span>Rinde más</span><i aria-hidden=\"true\">✦</i><span>NOZ Sport</span><i aria-hidden=\"true\">✦</i><span>Cardio</span><i aria-hidden=\"true\">✦</i><span>Fuerza</span><i aria-hidden=\"true\">✦</i><span>Resistencia</span><i aria-hidden=\"true\">✦</i></div></div></div>",
+        "section_width": "full-width"
+      }
+    },
+    "pack": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-sec noz-wrap\"><div class=\"noz-pack\"><div class=\"noz-pack__copy\"><div class=\"noz-sec__head\"><p class=\"noz-eyebrow\">Respira para rendir</p><h2 class=\"noz-sec__title\">30 tiras.<br><span>Cero excusas.</span></h2><p class=\"noz-lead\">Las tiras nasales NOZ están diseñadas para elevar suavemente los conductos nasales, ayudándote a respirar más y rendir mejor.</p></div><ul class=\"noz-feats\"><li class=\"noz-feat\"><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-aire.png?v=1790626706\" alt=\"\" width=\"64\" height=\"48\" loading=\"lazy\" decoding=\"async\"><div><h3>Flujo de aire optimizado</h3><p>Eleva suavemente los conductos nasales para que el aire entre sin esfuerzo.</p></div></li><li class=\"noz-feat\"><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-rendimiento.png?v=1790626706\" alt=\"\" width=\"64\" height=\"48\" loading=\"lazy\" decoding=\"async\"><div><h3>Máximo rendimiento</h3><p>Respira mejor en cada serie, cada kilómetro y cada sprint.</p></div></li><li class=\"noz-feat\"><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-oxigenacion.png?v=1790626706\" alt=\"\" width=\"64\" height=\"48\" loading=\"lazy\" decoding=\"async\"><div><h3>Mejor oxigenación</h3><p>Más aire en cada respiración para rendir hasta el final.</p></div></li></ul><div class=\"noz-pack__ctas\"><a class=\"noz-btn\" href=\"/products/noz-sport-tiras-nasales\">Comprar · 30 tiras</a></div></div><div class=\"noz-pack__visual\"><div class=\"noz-pack__glow\" aria-hidden=\"true\"></div><div class=\"noz-pack__scene\" id=\"noz-sobre\"><img class=\"noz-pack__strip\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-tira.webp?v=1790624093&width=800\" alt=\"\" width=\"1600\" height=\"1288\" loading=\"lazy\" decoding=\"async\"><div class=\"noz-pack__float\"><div class=\"noz-pack__tilt\"><div class=\"noz-pack__card\"><img class=\"noz-pack__face\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-sobre-frente.webp?v=1790624092&width=700\" alt=\"Sobre NOZ Sport: tiras nasales, 30 unidades\" width=\"1182\" height=\"1772\" loading=\"lazy\" decoding=\"async\"><img class=\"noz-pack__face noz-pack__face--back\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-sobre-dorso.webp?v=1790624093&width=700\" alt=\"Dorso del sobre NOZ: cómo funciona, ideal para, ingredientes y precauciones\" width=\"1182\" height=\"1772\" loading=\"lazy\" decoding=\"async\"></div></div></div></div><button type=\"button\" class=\"noz-flip\" data-noz-flip aria-controls=\"noz-sobre\" aria-pressed=\"false\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 0 1 15.5-6.2L21 8\"/><path d=\"M21 3v5h-5\"/><path d=\"M21 12a9 9 0 0 1-15.5 6.2L3 16\"/><path d=\"M3 21v-5h5\"/></svg><span>Ver dorso</span></button></div></div></div>",
+        "section_width": "full-width"
+      }
+    },
+    "how_it_works": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-sec noz-wrap\"><div class=\"noz-sec__head\"><p class=\"noz-eyebrow\">Cómo funciona</p><h2 class=\"noz-sec__title\">Tres pasos. <span>Cero complicaciones.</span></h2></div><div class=\"noz-how\"><img class=\"noz-how__nose\" src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-nariz.png?v=1790626707\" alt=\"Ilustración: la tira abre las fosas nasales y entra más aire\" width=\"295\" height=\"360\" loading=\"lazy\" decoding=\"async\"><div><ol class=\"noz-steps\"><li class=\"noz-step\"><span class=\"noz-step__num\" aria-hidden=\"true\">01</span><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-despegar.png?v=1790626706\" alt=\"\" height=\"64\" loading=\"lazy\" decoding=\"async\"><h3>1. Despegar</h3><p>Retira la tira del papel protector.</p></li><li class=\"noz-step\"><span class=\"noz-step__num\" aria-hidden=\"true\">02</span><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-aplicar.png?v=1790626706\" alt=\"\" height=\"64\" loading=\"lazy\" decoding=\"async\"><h3>2. Aplicar</h3><p>Colócala sobre la nariz y presiona los extremos hacia abajo.</p></li><li class=\"noz-step\"><span class=\"noz-step__num\" aria-hidden=\"true\">03</span><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-respirar.png?v=1790626706\" alt=\"\" height=\"64\" loading=\"lazy\" decoding=\"async\"><h3>3. Respirar</h3><p>Disfruta al instante de un mejor flujo de aire.</p></li></ol><div class=\"noz-facts\"><div><h4>Ingredientes</h4><p>Adhesivo de grado médico, poliéster, poliuretano, papel protector.</p></div><div><h4>Precaución</h4><ul><li>Solo para uso externo.</li><li>No utilizar sobre piel dañada o irritada.</li><li>Suspende su uso si aparece una erupción o irritación.</li></ul></div></div></div></div></div>",
+        "section_width": "full-width",
+        "background_color": "#0d0d0d"
+      }
+    },
+    "ideal_for": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-sec noz-wrap\"><div class=\"noz-sec__head\"><p class=\"noz-eyebrow\">Ideal para</p><h2 class=\"noz-sec__title\">Para cada <span>entreno.</span></h2></div><ul class=\"noz-ideal\"><li><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-cardio.png?v=1790626706\" alt=\"\" height=\"72\" loading=\"lazy\" decoding=\"async\"><span>Cardio</span></li><li><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-fuerza.png?v=1790626706\" alt=\"\" height=\"72\" loading=\"lazy\" decoding=\"async\"><span>Fuerza</span></li><li><img src=\"https://cdn.shopify.com/s/files/1/1026/6755/1055/files/noz-icon-resistencia.png?v=1790626706\" alt=\"\" height=\"72\" loading=\"lazy\" decoding=\"async\"><span>Resistencia</span></li></ul></div>",
+        "section_width": "full-width"
+      }
+    },
+    "cta_band": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"noz-cta\"><div class=\"noz-cta__inner noz-wrap\"><p class=\"noz-cta__eyebrow\">Tu próximo entreno empieza aquí</p><h2 class=\"noz-cta__title\">Respira.<br>Rinde.<br><em>Repite.</em></h2><a class=\"noz-btn\" href=\"/products/noz-sport-tiras-nasales\">Comprar NOZ Sport <span aria-hidden=\"true\">→</span></a></div></div>",
+        "section_width": "full-width"
+      }
+    }
+  },
+  "order": [
+    "hero_jVaWmY",
+    "marquee_top",
+    "pack",
+    "how_it_works",
+    "ideal_for",
+    "cta_band"
+  ]
+}
