@@ -6,21 +6,22 @@ Copia de los archivos modificados del tema **"NOZ – Rediseño (borrador)"** (t
 
 | Archivo | Qué hace |
 |---|---|
-| `assets/noz-custom.css` | Sistema visual: Titillium Black, botones rectos con destello, marquesina, manifiesto, cifras, pasos, CTA final y escena 3D del sobre. |
-| `assets/noz-motion.js` | Animaciones con GSAP + ScrollTrigger: barra de progreso, titulares letra a letra, parallax del vídeo, manifiesto que se ilumina, contadores, "Cómo funciona" horizontal (escritorio) y el sobre que gira/enseña el dorso/suelta la tira al hacer scroll. |
+| `assets/noz-custom.css` | Sistema visual: Titillium Black, botones rectos con destello, marquesina, sección del sobre con beneficios, cómo funciona, ideal para y CTA final. |
+| `assets/noz-motion.js` | Botón "Ver dorso" del sobre (funciona sin GSAP) y animaciones ligeras con GSAP + ScrollTrigger: barra de progreso, titulares letra a letra, parallax suave del vídeo, una entrada por bloque y el sobre que se inclina al cruzar la pantalla. Sin secciones fijadas (sin scroll secuestrado). |
 | `snippets/stylesheets.liquid` | Carga `noz-custom.css`, GSAP 3.12.5 (cdnjs) y `noz-motion.js`. |
-| `templates/index.json` | Portada: hero con vídeo → marquesina → manifiesto → sobre → beneficios → cifras → producto → cómo funciona → ideal para → CTA. |
+| `templates/index.json` | Portada (patrón "producto + beneficios" de UI/UX Pro Max): hero con vídeo → marquesina → sobre + 3 beneficios → cómo funciona (+ ingredientes y precauciones) → ideal para → producto → CTA. |
 | `templates/product.json` | Ficha de producto traducida y con campos legibles. |
 | `config/settings_data.json` | Tipografías Titillium, botones y campos de formulario legibles sobre fondo negro. |
 | `sections/header-group.json` | Barra de anuncios lima, header transparente sobre el vídeo. |
 | `sections/footer-group.json` | Pie en español, newsletter, Instagram @noz.balance. |
-| `media/` | Frente y dorso del sobre (renderizados de `Packaging.pdf`) y foto de la tira. Ya están subidos a *Contenido → Archivos* en Shopify; la portada los usa desde el CDN. |
+| `media/` | Frente y dorso del sobre (renderizados de `Packaging.pdf`), foto de la tira y `icons/` con los 10 iconos del packaging recortados del PDF con fondo transparente. Todos están en *Contenido → Archivos* de Shopify; la portada los carga con `file_url`. |
 
 ## Accesibilidad y rendimiento
 
 - Sin JavaScript o si GSAP no carga, todo el contenido se ve completo (sin movimiento).
 - Con `prefers-reduced-motion: reduce` se desactivan las animaciones.
-- El "pin" horizontal de "Cómo funciona" solo se activa en escritorio (≥ 990px).
+- Nada se fija al hacer scroll: cada bloque tiene como mucho una animación de entrada.
+- El sobre se puede girar con un botón accesible (`aria-pressed`).
 
 ## Cómo aplicarlo
 
